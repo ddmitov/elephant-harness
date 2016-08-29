@@ -66,26 +66,13 @@ if (navigator.userAgent.match(/Electron/) || typeof(nw) !== 'undefined') {
         // try to find the first PHP interpreter on PATH:
         if (error && error.code === 'ENOENT') {
             phpInterpreterCommand = "php-cgi";
-
-            const exec = require('child_process').exec;
-            exec('php-cgi -v', (error, stdout, stderr) => {
-                if (error) {
-                    phpInterpreterCommand = null;
-                    console.log('ElephantHarness.js: ' +
-                        'No PHP interpreter found.');
-                    return;
-                }
-            });
-
-            if (phpInterpreterCommand !== null) {
-                console.log('ElephantHarness.js: ' +
-                    'PHP interpreter found on PATH.');
-            }
+            console.log('ElephantHarness.js: ' +
+                'Will try to use PHP interpreter on PATH.');
         } else {
             phpInterpreterCommand = portablePhpInterpreterFullPath;
             console.log(
-                'ElephantHarness.js: Portable PHP interpreter found: ' +
-                phpInterpreterCommand);
+                'ElephantHarness.js: ' +
+                'Portable PHP interpreter found: ' + phpInterpreterCommand);
         }
     });
 } else {
