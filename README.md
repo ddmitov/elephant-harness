@@ -1,7 +1,7 @@
 ElephantHarness.js
 --------------------------------------------------------------------------------
   
-```ElephantHarness.js``` is a small JavaScript library that can start [PHP] (http://php.net/) scripts from an application based on [Electron] (http://electron.atom.io/) or [NW.js] (http://nwjs.io/).
+```ElephantHarness.js``` is a small JavaScript library that can start asynchronously and with no timeout [PHP] (http://php.net/) scripts from applications based on [Electron] (http://electron.atom.io/) or [NW.js] (http://nwjs.io/).
   
 ## Node.js Module Dependencies
 All dependencies of ```ElephantHarness.js``` are available inside [Electron] (http://electron.atom.io/) and [NW.js] (http://nwjs.io/).
