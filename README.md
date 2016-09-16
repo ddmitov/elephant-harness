@@ -3,6 +3,25 @@ ElephantHarness.js
   
 ```ElephantHarness.js``` is a small JavaScript library that can start asynchronously and with no timeout [PHP] (http://php.net/) scripts from applications based on [Electron] (http://electron.atom.io/) or [NW.js] (http://nwjs.io/).
   
+## Quick Start
+```ElephantHarness.js``` is developed and tested for direct use with ```Electron``` or ```NW.js``` binaries without issuing ```npm``` commands.
+  
+**To use it with ```Electron```:**
+  1. Create a new folder and name it, for example, ```elephant-harness```,  
+  2. Download the ```Electron``` binary package for your operating system from [https://github.com/electron/electron/releases] (https://github.com/electron/electron/releases),  
+  3. Extract the downloaded ```Electron``` binary package inside your previously created ```elephant-harness``` folder,  
+  4. Download the ```ElephantHarness.js``` source package from GitHub,  
+  5. Extract the downloaded ```ElephantHarness.js``` source package and copy its ```resources``` subfolder inside the ```elephant-harness``` folder merging with the ```resources``` subfolder of ```Electron```,  
+  6. start the ```Electron``` binary inside the ```elephant-harness``` folder.  
+  
+**To use it with ```NW.js```:**
+  1. Create a new folder and name it, for example, ```elephant-harness```,  
+  2. Download the ```NW.js``` binary package for your operating system from [http://nwjs.io/downloads/] (http://nwjs.io/downloads/),  
+  3. Extract the downloaded ```NW.js``` binary package inside your previously created ```elephant-harness``` folder,  
+  4. Download the ```ElephantHarness.js``` source package from GitHub,  
+  5. Extract the downloaded ```ElephantHarness.js``` source package and copy its ```resources``` subfolder and ```package.json``` file in the ```elephant-harness``` folder,  
+  6. start the ```NW.js``` binary inside the ```elephant-harness``` folder.  
+  
 ## Node.js Module Dependencies
 All dependencies of ```ElephantHarness.js``` are available inside [Electron] (http://electron.atom.io/) and [NW.js] (http://nwjs.io/).
 * ```child_process```
