@@ -11,7 +11,7 @@ ElephantHarness.js
   2. Download the ```Electron``` binary package for your operating system from [https://github.com/electron/electron/releases] (https://github.com/electron/electron/releases),  
   3. Extract the downloaded ```Electron``` binary package inside your previously created ```elephant-harness``` folder,  
   4. Download the ```ElephantHarness.js``` source package from GitHub,  
-  5. Extract the downloaded ```ElephantHarness.js``` source package and copy its ```resources``` subfolder inside the ```elephant-harness``` folder merging with the ```resources``` subfolder of ```Electron```,  
+  5. Extract the downloaded ```ElephantHarness.js``` source package and copy its ```resources``` subfolder inside the ```elephant-harness``` folder merging it with the ```resources``` subfolder of ```Electron```,  
   6. start the ```Electron``` binary inside the ```elephant-harness``` folder.  
   
 **To use it with ```NW.js```:**
@@ -89,13 +89,4 @@ All dependencies of ```ElephantHarness.js``` are available inside [Electron] (ht
   
 ## License
   
-This program is free software;  
-you can redistribute it and/or modify it under the terms of the GNU General Public License,  
-as published by the Free Software Foundation; either version 3 of the License,  
-or (at your option) any later version.  
-This program is distributed in the hope that it will be useful, but WITHOUT A NY WARRANTY;  
-without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
-  
-## Author
-  
-Dimitar D. Mitov, 2016.
+  MIT © 2016 Dimitar D. Mitov  
