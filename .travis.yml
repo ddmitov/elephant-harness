@@ -1,0 +1,21 @@
+language: node_js
+
+node_js:
+  - "7.3.0"
+
+os:
+  - linux
+
+env:
+  - PATH=$PATH:/home/travis/.nvm/versions/node/v7.3.0/bin/
+
+sudo: required
+
+dist: wheezy
+
+install:
+  - sudo apt-get -y install php
+  - npm install
+
+script:
+  - npm run ci-test
