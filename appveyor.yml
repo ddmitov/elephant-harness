@@ -2,8 +2,7 @@ init:
   - git config --global core.autocrlf true
 
 install:
-  - choco install -y --ignorechecksum vcredist2015
-  - choco install -y --ignorechecksum php
+  - cinst -y php -i
   - SET PATH=c:\tools\php;%PATH%
   - ps: Install-Product node $env:nodejs_version
   - npm install
