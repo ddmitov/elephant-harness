@@ -36,3 +36,6 @@ https://discuss.runkit.com/t/customizing-your-npm-packages-page-on-tonic/23
 http://php.net/manual/en/function.phpversion.php  
 
 http://alvinalexander.com/php/php-write-stderr-php-command-line-script-fwrite  
+
+## AppVeyor
+http://help.appveyor.com/discussions/problems/5616-not-able-to-build-due-to-problem-in-chocolateyinstallps1  

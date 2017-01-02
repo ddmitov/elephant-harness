@@ -31,7 +31,8 @@ phpTestScript.stderrFunction = function(stderr) {
 };
 
 phpTestScript.exitFunction = function(exitCode) {
-  console.log('elephant-harness test script exited with exit code ' + exitCode);
+  console.log('elephant-harness PHP test script exited with exit code ' +
+    exitCode);
 }
 
 // Start the Perl test script:
