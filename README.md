@@ -34,23 +34,23 @@ elephantHarness.startScript(phpScript);
 ## Electron Demo
 * Download the [elephant-harness package](https://github.com/ddmitov/elephant-harness).  
 * Download the [Electron binary package for your operating system](https://github.com/electron/electron/releases).  
-* Extract the downloaded ```elephant-harness``` package.  
-* Extract the downloaded [Electron](http://electron.atom.io/) binary package inside the previously extracted ```elephant-harness-master/electron-nwjs-demo``` folder. Confirm merging of the ```resources``` subfolder of [Electron](http://electron.atom.io/) with the ```resources``` subfolder of the demo.  
-* Start the [Electron](http://electron.atom.io/) binary.  
+* Extract the downloaded elephant-harness package.  
+* Extract the downloaded Electron binary package inside the previously extracted ```elephant-harness-master/electron-nwjs-demo``` folder. Confirm merging of the ```resources``` subfolder of Electron with the ```resources``` subfolder of the demo.  
+* Start the Electron binary.  
 
 ## NW.js Demo
 * Download the [elephant-harness package](https://github.com/ddmitov/elephant-harness).  
 * Download the [NW.js binary package for your operating system](http://nwjs.io/downloads/).  
-* Extract the downloaded [NW.js](http://nwjs.io/) binary package. It will create its own folder.  
-* Extract the downloaded ```elephant-harness``` package and copy everything inside its ```elephant-harness-master/electron-nwjs-demo``` subfolder in the folder of the [NW.js](http://nwjs.io/) binary.  
-* Start the [NW.js](http://nwjs.io/) binary.  
+* Extract the downloaded NW.js binary package. It will create its own folder.  
+* Extract the downloaded elephant-harness package and copy everything inside its ```elephant-harness-master/electron-nwjs-demo``` folder in the folder of the NW.js binary.  
+* Start the NW.js binary.  
 
 ## Core Dependencies
 * ```child_process```
 * ```fs```
 
 ## External Dependency
-The only external dependency of ```elephant-harness``` is a PHP interpreter on PATH or any other PHP interpreter identified by its full pathname. ```elephant-harness``` package test will fail if no ```php``` binary is available on PATH.
+The only external dependency of elephant-harness is a PHP interpreter on PATH or any other PHP interpreter identified by its full pathname. elephant-harness npm package test will fail if no ```php``` binary is available on PATH.
 
 ## API
 
@@ -122,7 +122,7 @@ elephantHarness.startScript(phpScript);
 ```
 
 ## PHP Interpreter
-Any PHP interpreter is usable for elephant-harness - either a PHP interpreter on PATH or a PHP interpreter identified by its full pathname. ```php``` binary should be used instead of ```php-cgi``` in all [Node.js](http://nodejs.org/) command line applications and test scripts.  
+Any PHP interpreter is usable for elephant-harness - either a PHP interpreter on PATH or a PHP interpreter identified by its full pathname. ```php``` binary should be used instead of ```php-cgi``` in all [Node.js](http://nodejs.org/) command-line applications and test scripts.  
 
 ## [Thanks and Credits](./CREDITS.md)
 
