@@ -7,7 +7,7 @@ elephant-harness
 [![Travis CI Build Status](https://travis-ci.org/ddmitov/elephant-harness.svg?branch=master)](https://travis-ci.org/ddmitov/elephant-harness)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ddmitov/elephant-harness?branch=master&svg=true)](https://ci.appveyor.com/project/ddmitov/elephant-harness)  
 
-```elephant-harness``` is a small [Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) library for asynchronous handling of [PHP](http://php.net/) scripts.
+elephant-harness is a small [Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) library for asynchronous handling of [PHP](http://php.net/) scripts.
 
 ## Quick Start
 * Install using one of the following commands:  
@@ -74,6 +74,8 @@ phpScript.exitFunction = function(exitCode) {
   console.log('PHP script exited with exit code ' + exitCode);
 }
 
+phpScript.interpreterSwitches = "-q";
+
 phpScript.method = "POST";
 
 var formData = $("#form-id").serialize();
@@ -103,20 +105,24 @@ elephantHarness.startScript(phpScript);
   This is the name of the function that will be executed when a PHP script is finished.  
   The only parameter passed to this function is the ```exitCode``` string.  
 
+* **interpreterSwitches:**  
+  These are supplied to the PHP interpreter on runtime.  
+  The ```php-cgi``` binary should be used together with the ```-q``` switch in [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) to enable quiet mode and suppress unnecessary HTTP header output.  
+
 * **method:**  
-  ```GET``` or ```POST```  
-  ```method``` is mandatory object property if ```formData``` is set.  
+  Only ```GET``` or ```POST``` are allowed.  
+  This object property has no effect if ```formData``` is not set.  
 
 * **formData:**  
-  ```formData``` is mandatory object property if ```method``` is set.  
-  ```elephant-harness``` does not depend on [jQuery](https://jquery.com/), but it can be used for easy acquisition of form data:  
+  This object property has no effect if ```method``` is not set.  
+  elephant-harness does not depend on [jQuery](https://jquery.com/), but it can be used for easy acquisition of form data:  
 
 ```javascript
   var formData = $("#form-id").serialize();
 ```
 
 ## PHP Interpreter
-```elephant-harness``` is able to use any PHP interpreter - either a PHP interpreter on PATH or a PHP interpreter identified by its full pathname. ```php``` binary should be used instead of ```php-cgi``` in all command line applications and test scripts.  
+Any PHP interpreter is usable for elephant-harness - either a PHP interpreter on PATH or a PHP interpreter identified by its full pathname. ```php``` binary should be used instead of ```php-cgi``` in all [Node.js](http://nodejs.org/) command line applications and test scripts.  
 
 ## [Thanks and Credits](./CREDITS.md)
 

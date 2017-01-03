@@ -43,6 +43,7 @@ function startTestScript() {
   var testScript = new Object();
   testScript.interpreter = "php-cgi";
   testScript.scriptFullPath = testScriptFullPath;
+  testScript.interpreterSwitches = "-q";
 
   testScript.stdoutFunction = function(stdout) {
     testScriptOutput = testScriptOutput + stdout;

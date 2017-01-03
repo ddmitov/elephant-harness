@@ -1,5 +1,5 @@
 
-// elephant-harness version 0.2.1
+// elephant-harness version 0.3.0
 // Node.js - Electron - NW.js controller for PHP scripts
 // elephant-harness is licensed under the terms of the MIT license.
 // Copyright (c) 2016 - 2017 Dimitar D. Mitov
@@ -64,11 +64,22 @@ module.exports.startScript = function(scriptObject) {
 
         // Run the supplied PHP script:
         const spawn = require('child_process').spawn;
-        const scriptHandler =
-          spawn(scriptObject.interpreter,
-            ['-q', scriptObject.scriptFullPath],
-            {env: scriptEnvironment}
-          );
+        var scriptHandler;
+
+        if (scriptObject.interpreterSwitches !== undefined &&
+        scriptObject.interpreterSwitches.length > 0) {
+          scriptHandler =
+            spawn(scriptObject.interpreter,
+              [scriptObject.interpreterSwitches, scriptObject.scriptFullPath],
+              {env: scriptEnvironment}
+            );
+        } else {
+          scriptHandler =
+            spawn(scriptObject.interpreter,
+              [scriptObject.scriptFullPath],
+              {env: scriptEnvironment}
+            );
+        }
 
         // Send POST data to the PHP script:
         if (scriptObject.method !== undefined &&
