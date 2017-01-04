@@ -23,11 +23,11 @@ phpTestScript.interpreter = "php";
 phpTestScript.scriptFullPath = phpTestScriptFullPath;
 
 phpTestScript.stdoutFunction = function(stdout) {
-  console.log('elephant-harness STDOUT test: OK - using ' + stdout);
+  console.log('elephant-harness STDOUT test: ' + stdout);
 };
 
 phpTestScript.stderrFunction = function(stderr) {
-  console.log('elephant-harness STDERR test: OK - using ' + stderr);
+  console.log('elephant-harness STDERR test: ' + stderr);
 };
 
 phpTestScript.exitFunction = function(exitCode) {

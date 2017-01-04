@@ -74,7 +74,7 @@ phpScript.exitFunction = function(exitCode) {
   console.log('PHP script exited with exit code ' + exitCode);
 }
 
-phpScript.interpreterSwitches = "-q";
+phpScript.interpreterSwitch = "-q";
 
 phpScript.method = "POST";
 
@@ -105,8 +105,8 @@ elephantHarness.startScript(phpScript);
   This is the name of the function that will be executed when a PHP script is finished.  
   The only parameter passed to this function is the ```exitCode``` string.  
 
-* **interpreterSwitches:**  
-  These are supplied to the PHP interpreter on runtime.  
+* **interpreterSwitch:**  
+  It is supplied to the PHP interpreter on runtime. No spaces are allowed!  
   The ```php-cgi``` binary should be used together with the ```-q``` switch in [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) to enable quiet mode and suppress unnecessary HTTP header output.  
 
 * **method:**  

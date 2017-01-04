@@ -1,6 +1,6 @@
 <?php
 
-echo 'PHP version ' . phpversion();
-fwrite(STDERR, 'PHP version ' . phpversion());
+echo 'OK - using PHP version ' . phpversion();
+fwrite(STDERR, 'OK - using PHP version ' . phpversion());
 
 ?>
