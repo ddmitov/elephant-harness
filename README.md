@@ -35,14 +35,14 @@ elephantHarness.startScript(phpScript);
 * Download the [elephant-harness package](https://github.com/ddmitov/elephant-harness).  
 * Download the [Electron binary package for your operating system](https://github.com/electron/electron/releases).  
 * Extract the downloaded elephant-harness package.  
-* Extract the downloaded Electron binary package inside the previously extracted ```elephant-harness-master/electron-nwjs-demo``` folder. Confirm merging of the ```resources``` subfolder of Electron with the ```resources``` subfolder of the demo.  
+* Extract the downloaded Electron binary package inside the previously extracted ```elephant-harness-master/demo``` folder. Confirm merging of the ```resources``` subfolder of Electron with the ```resources``` subfolder of the demo.  
 * Start the Electron binary.  
 
 ## NW.js Demo
 * Download the [elephant-harness package](https://github.com/ddmitov/elephant-harness).  
 * Download the [NW.js binary package for your operating system](http://nwjs.io/downloads/).  
 * Extract the downloaded NW.js binary package. It will create its own folder.  
-* Extract the downloaded elephant-harness package and copy everything inside its ```elephant-harness-master/electron-nwjs-demo``` folder in the folder of the NW.js binary.  
+* Extract the downloaded elephant-harness package and copy everything inside its ```elephant-harness-master/demo``` folder in the folder of the NW.js binary.  
 * Start the NW.js binary.  
 
 ## Core Dependencies
