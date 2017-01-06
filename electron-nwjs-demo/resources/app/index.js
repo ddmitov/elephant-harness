@@ -1,3 +1,5 @@
+'use strict';
+
 // elephant-harness demo for Electron and NW.js
 
 // Load the elephant-harness package:
@@ -21,7 +23,7 @@ var binaryDirectory = path.dirname(binaryPath);
 // Get the full path of the application root directory:
 var applicationDirectory = path.join(binaryDirectory, "resources", "app");
 
-// Determine PHP interpreter:
+// PHP interpreter:
 var perlInterpreter = "php-cgi";
 if (platform === "win32") {
   // Check for a portable PHP interpreter:

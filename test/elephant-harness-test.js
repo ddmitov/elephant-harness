@@ -1,3 +1,5 @@
+'use strict';
+
 // elephant-harness test
 
 // Load the elephant-harness package:
@@ -22,6 +24,12 @@ var phpTestScript = new Object();
 phpTestScript.interpreter = "php";
 phpTestScript.scriptFullPath = phpTestScriptFullPath;
 
+// The following interpreter switches are added only
+// to test operation with switches separated with a whitespace:
+// -e  Generate extended information for debugger/profiler
+// -H  Hide any passed arguments from external tools
+phpTestScript.interpreterSwitch = "-e -H";
+
 phpTestScript.stdoutFunction = function(stdout) {
   console.log('elephant-harness STDOUT test: ' + stdout);
 };
@@ -35,5 +43,5 @@ phpTestScript.exitFunction = function(exitCode) {
     exitCode);
 }
 
-// Start the Perl test script:
+// Start the PHP test script:
 elephantHarness.startScript(phpTestScript);
