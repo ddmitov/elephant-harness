@@ -11,8 +11,8 @@ elephant-harness
 elephant-harness is a small [Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) library for asynchronous handling of [PHP](http://php.net/) scripts.
 
 ## Quick Start
-* Install from npm: ```npm install elephant-harness```  
-  or install from GitHub: ```npm install git+https://github.com/ddmitov/elephant-harness.git```  
+* Install using: ```npm install elephant-harness```  
+  or ```npm install git+https://github.com/ddmitov/elephant-harness.git```  
 
 * Use from code:
 
@@ -57,8 +57,10 @@ The only external dependency of elephant-harness is a PHP interpreter on PATH or
 const elephantHarness = require('elephant-harness');
 
 var phpScriptObject = new Object();
-phpScriptObject.interpreter = 'php-cgi'; // mandatory object property
-phpScriptObject.scriptFullPath = '/test/test.php'; // mandatory object property
+ // mandatory object property
+phpScriptObject.interpreter = 'php-cgi';
+ // mandatory object property
+phpScriptObject.scriptFullPath = '/test/test.php';
 
 // mandatory object property:
 phpScriptObject.stdoutFunction = function(stdout) {
@@ -116,9 +118,9 @@ elephantHarness.startScript(phpScriptObject);
   This object property has no effect if ```method``` is not set.  
   elephant-harness does not depend on [jQuery](https://jquery.com/), but it can be used for easy acquisition of form data:  
 
-```javascript
+  ```javascript
   var formData = $('#form-id').serialize();
-```
+  ```
 
 ## Interactive Scripts
 elephant-harness can also start and communicate with interactive scripts having their own event loops and capable of repeatedly receiving STDIN input. Use the following code to send data to the standard input of an interactive script waiting for data on STDIN:
