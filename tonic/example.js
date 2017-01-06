@@ -1,11 +1,11 @@
-var elephantHarness = require('elephant-harness');
+const elephantHarness = require('elephant-harness');
 
-var phpScript = new Object();
-phpScript.interpreter = "php";
-phpScript.scriptFullPath = "/test/test.php";
+var phpScriptObject = new Object();
+phpScriptObject.interpreter = 'php';
+phpScriptObject.scriptFullPath = '/test/test.php';
 
-phpScript.stdoutFunction = function(stdout) {
+phpScriptObject.stdoutFunction = function(stdout) {
   console.log(stdout);
 };
 
-elephantHarness.startScript(phpScript);
+elephantHarness.startScript(phpScriptObject);

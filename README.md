@@ -5,30 +5,29 @@ elephant-harness
 [![GitHub License](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE.md)
 [![NPM Version](https://img.shields.io/npm/v/elephant-harness.svg)](https://www.npmjs.com/package/elephant-harness)
 [![Travis CI Build Status](https://travis-ci.org/ddmitov/elephant-harness.svg?branch=master)](https://travis-ci.org/ddmitov/elephant-harness)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ddmitov/elephant-harness?branch=master&svg=true)](https://ci.appveyor.com/project/ddmitov/elephant-harness)  
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ddmitov/elephant-harness?branch=master&svg=true)](https://ci.appveyor.com/project/ddmitov/elephant-harness)
+[![Coverity Scan Build Status](https://scan.coverity.com/projects/11338/badge.svg)](https://scan.coverity.com/projects/ddmitov-elephant-harness)  
 
 elephant-harness is a small [Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) library for asynchronous handling of [PHP](http://php.net/) scripts.
 
 ## Quick Start
-* Install using one of the following commands:  
-
-```npm install elephant-harness```  
-```npm install git+https://github.com/ddmitov/elephant-harness.git```  
+* Install from npm: ```npm install elephant-harness```  
+  or install from GitHub: ```npm install git+https://github.com/ddmitov/elephant-harness.git```  
 
 * Use from code:
 
 ```javascript
-var elephantHarness = require('elephant-harness');
+const elephantHarness = require('elephant-harness');
 
-var phpScript = new Object();
-phpScript.interpreter = "php";
-phpScript.scriptFullPath = "/test/test.php";
+var phpScriptObject = new Object();
+phpScriptObject.interpreter = 'php';
+phpScriptObject.scriptFullPath = '/test/test.php';
 
-phpScript.stdoutFunction = function(stdout) {
+phpScriptObject.stdoutFunction = function(stdout) {
   console.log(stdout);
 };
 
-elephantHarness.startScript(phpScript);
+elephantHarness.startScript(phpScriptObject);
 ```
 
 ## Electron Demo
@@ -55,33 +54,33 @@ The only external dependency of elephant-harness is a PHP interpreter on PATH or
 ## API
 
 ```javascript
-var elephantHarness = require('elephant-harness');
+const elephantHarness = require('elephant-harness');
 
-var phpScript = new Object();
-phpScript.interpreter = "php-cgi"; // mandatory object property
-phpScript.scriptFullPath = "/test/test.php"; // mandatory object property
+var phpScriptObject = new Object();
+phpScriptObject.interpreter = 'php-cgi'; // mandatory object property
+phpScriptObject.scriptFullPath = '/test/test.php'; // mandatory object property
 
 // mandatory object property:
-phpScript.stdoutFunction = function(stdout) {
-  document.getElementById("DOM-element-id").innerHTML = stdout;
+phpScriptObject.stdoutFunction = function(stdout) {
+  document.getElementById('DOM-element-id').innerHTML = stdout;
 };
 
-phpScript.stderrFunction = function(stderr) {
+phpScriptObject.stderrFunction = function(stderr) {
   console.log('PHP script STDERR:\n' + stderr);
 }
 
-phpScript.exitFunction = function(exitCode) {
+phpScriptObject.exitFunction = function(exitCode) {
   console.log('PHP script exited with exit code ' + exitCode);
 }
 
-phpScript.interpreterSwitches = "-q";
+phpScriptObject.interpreterSwitches = '-q';
 
-phpScript.method = "POST";
+phpScriptObject.method = 'POST';
 
-var formData = $("#form-id").serialize();
-phpScript.formData = formData;
+var formData = $('#form-id').serialize();
+phpScriptObject.formData = formData;
 
-elephantHarness.startScript(phpScript);
+elephantHarness.startScript(phpScriptObject);
 ```
 
   * **phpInterpreter:**  
@@ -118,7 +117,15 @@ elephantHarness.startScript(phpScript);
   elephant-harness does not depend on [jQuery](https://jquery.com/), but it can be used for easy acquisition of form data:  
 
 ```javascript
-  var formData = $("#form-id").serialize();
+  var formData = $('#form-id').serialize();
+```
+
+## Interactive Scripts
+elephant-harness can also start and communicate with interactive scripts having their own event loops and capable of repeatedly receiving STDIN input. Use the following code to send data to the standard input of an interactive script waiting for data on STDIN:
+
+```javascript
+var data = document.getElementById('interactive-script-input').value;
+phpScriptObject.scriptHandler.stdin.write(data + '\n');
 ```
 
 ## PHP Interpreter

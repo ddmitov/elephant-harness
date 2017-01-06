@@ -3,14 +3,14 @@
 // elephant-harness demo for Electron and NW.js
 
 // Load the elephant-harness package:
-var elephantHarness = require('./elephant-harness/elephant-harness.js');
+const elephantHarness = require('./elephant-harness/elephant-harness.js');
 
 // Determine the operating system and initialize 'path' object:
 var os = require('os');
 var platform = os.platform();
 
 var path;
-if (platform !== "win32") {
+if (platform !== 'win32') {
   path = require('path').posix;
 } else {
   path = require('path').win32;
@@ -21,39 +21,39 @@ var binaryPath = process.execPath;
 var binaryDirectory = path.dirname(binaryPath);
 
 // Get the full path of the application root directory:
-var applicationDirectory = path.join(binaryDirectory, "resources", "app");
+var applicationDirectory = path.join(binaryDirectory, 'resources', 'app');
 
 // PHP interpreter:
-var perlInterpreter = "php-cgi";
-if (platform === "win32") {
+var phpInterpreter = 'php-cgi';
+if (platform === 'win32') {
   // Check for a portable PHP interpreter:
   var portablePhp =
-      path.join(binaryDirectory, "php", "php-cgi.exe");
+      path.join(binaryDirectory, 'php', 'php-cgi.exe');
   var filesystem = require('fs');
   if (filesystem.existsSync(portablePhp)) {
-    perlInterpreter = portablePhp;
+    phpInterpreter = portablePhp;
   }
 }
 
 // Start the test script:
 function startTestScript() {
   var testScriptFullPath =
-      path.join(applicationDirectory, "php", "phpinfo.php");
+      path.join(applicationDirectory, 'php', 'phpinfo.php');
 
-  var testScriptOutput = "";
+  var testScriptOutput = '';
 
-  var testScript = new Object();
-  testScript.interpreter = "php-cgi";
-  testScript.scriptFullPath = testScriptFullPath;
-  testScript.interpreterSwitches = "-q";
+  var testScriptObject = new Object();
+  testScriptObject.interpreter = phpInterpreter;
+  testScriptObject.scriptFullPath = testScriptFullPath;
+  testScriptObject.interpreterSwitches = '-q';
 
-  testScript.stdoutFunction = function(stdout) {
+  testScriptObject.stdoutFunction = function(stdout) {
     testScriptOutput = testScriptOutput + stdout;
   };
 
-  testScript.exitFunction = function(stdout) {
+  testScriptObject.exitFunction = function(stdout) {
     document.write(testScriptOutput);
   };
 
-  elephantHarness.startScript(testScript);
+  elephantHarness.startScript(testScriptObject);
 }

@@ -14,7 +14,7 @@ let mainWindow;
 
 function createWindow () {
   // Set the icon path:
-  var iconFullPath = __dirname + ".png";
+  var iconFullPath = __dirname + '.png';
 
   // Create the browser window:
   mainWindow = new BrowserWindow({icon: iconFullPath});
