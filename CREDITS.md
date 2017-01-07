@@ -9,7 +9,7 @@ https://www.npmjs.com/package/parse-spawn-args
 Interpreter arguments parsing of ```elephant-harness``` depends on a code fragment from his module.  
 
 ## Elephant Icon
-Thanks to Shrikant Rawa for his beautifull elephant icon!  
+Thanks to Shrikant Rawa for his beautiful elephant icon!  
 License: CC Attribution 4.0  
 http://www.iconarchive.com/show/animals-icons-by-shrikant-rawa/elephant-icon.html  
 

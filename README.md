@@ -11,11 +11,8 @@ elephant-harness
 elephant-harness is a small [Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) library for asynchronous handling of [PHP](http://php.net/) scripts.
 
 ## Quick Start
-* Install using: ```npm install elephant-harness```  
-  or ```npm install git+https://github.com/ddmitov/elephant-harness.git```  
-
-* Use from code:
-
+``npm install elephant-harness``  
+  
 ```javascript
 const elephantHarness = require('elephant-harness');
 
@@ -34,22 +31,22 @@ elephantHarness.startScript(phpScriptObject);
 * Download the [elephant-harness package](https://github.com/ddmitov/elephant-harness).  
 * Download the [Electron binary package for your operating system](https://github.com/electron/electron/releases).  
 * Extract the downloaded elephant-harness package.  
-* Extract the downloaded Electron binary package inside the previously extracted ```elephant-harness-master/demo``` folder. Confirm merging of the ```resources``` subfolder of Electron with the ```resources``` subfolder of the demo.  
+* Extract the downloaded Electron binary package inside the previously extracted ``elephant-harness-master/demo`` folder. Confirm merging of the ``resources`` subfolder of Electron with the ``resources`` subfolder of the demo.  
 * Start the Electron binary.  
 
 ## NW.js Demo
 * Download the [elephant-harness package](https://github.com/ddmitov/elephant-harness).  
 * Download the [NW.js binary package for your operating system](http://nwjs.io/downloads/).  
 * Extract the downloaded NW.js binary package. It will create its own folder.  
-* Extract the downloaded elephant-harness package and copy everything inside its ```elephant-harness-master/demo``` folder in the folder of the NW.js binary.  
+* Extract the downloaded elephant-harness package and copy everything inside its ``elephant-harness-master/demo`` folder in the folder of the NW.js binary.  
 * Start the NW.js binary.  
 
 ## Core Dependencies
-* ```child_process```
-* ```fs```
+* ``child_process``
+* ``fs``
 
 ## External Dependency
-The only external dependency of elephant-harness is a PHP interpreter on PATH or any other PHP interpreter identified by its full pathname. elephant-harness npm package test will fail if no ```php``` binary is available on PATH.
+The only external dependency of elephant-harness is a PHP interpreter on PATH or any other PHP interpreter identified by its full pathname. elephant-harness npm package test will fail if no ``php`` binary is available on PATH.
 
 ## API
 
@@ -95,27 +92,27 @@ elephantHarness.startScript(phpScriptObject);
 
 * **stdoutFunction:**  
   This is the name of the function that will be executed every time when output is available on STDOUT.  
-  The only parameter passed to the ```stdoutFunction``` function is the ```stdout``` string.  
+  The only parameter passed to the ``stdoutFunction`` function is the ``stdout`` string.  
   This object property is mandatory.  
 
 * **stderrFunction:**  
   This is the name of the function that will be executed every time when output is available on STDERR.  
-  The only parameter passed to this function is the ```stderr``` string.  
+  The only parameter passed to this function is the ``stderr`` string.  
 
 * **exitFunction:**  
   This is the name of the function that will be executed when a PHP script is finished.  
-  The only parameter passed to this function is the ```exitCode``` string.  
+  The only parameter passed to this function is the ``exitCode`` string.  
 
 * **interpreterSwitches:**  
   They are supplied to the PHP interpreter on runtime.  
-  The ```php-cgi``` binary should be used together with the ```-q``` switch in [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) to enable quiet mode and suppress unnecessary HTTP header output.  
+  The ``php-cgi`` binary should be used together with the ``-q`` switch in [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) to enable quiet mode and suppress unnecessary HTTP header output.  
 
 * **method:**  
-  Only ```GET``` or ```POST``` are allowed.  
-  This object property has no effect if ```formData``` is not set.  
+  Only ``GET`` or ``POST`` are allowed.  
+  This object property has no effect if ``formData`` is not set.  
 
 * **formData:**  
-  This object property has no effect if ```method``` is not set.  
+  This object property has no effect if ``method`` is not set.  
   elephant-harness does not depend on [jQuery](https://jquery.com/), but it can be used for easy acquisition of form data:  
 
   ```javascript
@@ -131,7 +128,7 @@ phpScriptObject.scriptHandler.stdin.write(data + '\n');
 ```
 
 ## PHP Interpreter
-Any PHP interpreter is usable for elephant-harness - either a PHP interpreter on PATH or a PHP interpreter identified by its full pathname. ```php``` binary should be used instead of ```php-cgi``` in all [Node.js](http://nodejs.org/) command-line applications and test scripts.  
+Any PHP interpreter is usable for elephant-harness - either a PHP interpreter on PATH or a PHP interpreter identified by its full pathname. ``php`` binary should be used instead of ``php-cgi`` in all [Node.js](http://nodejs.org/) command-line applications and test scripts.  
 
 ## [Thanks and Credits](./CREDITS.md)
 
