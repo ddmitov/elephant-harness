@@ -47,7 +47,7 @@ elephantHarness.startScript(phpScriptObject);
 * ``fs``
 
 ## External Dependency
-The only external dependency of elephant-harness is a PHP interpreter on PATH or any other PHP interpreter identified by its full pathname. elephant-harness npm package test will fail if no ``php`` binary is available on PATH.
+The only external dependency of elephant-harness is a PHP interpreter on PATH or any other PHP interpreter identified by its full pathname. elephant-harness npm package test will fail if no ``php`` binary is available on PATH. demo application will fail if no ``php-cgi`` binary is available on PATH.
 
 ## API
 

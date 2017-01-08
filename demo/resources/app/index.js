@@ -23,22 +23,10 @@ var binaryDirectory = path.dirname(binaryPath);
 // Get the full path of the application root directory:
 var applicationDirectory = path.join(binaryDirectory, 'resources', 'app');
 
-// PHP interpreter:
-var phpInterpreter = 'php-cgi';
-if (platform === 'win32') {
-  // Check for a portable PHP interpreter:
-  var portablePhp =
-      path.join(binaryDirectory, 'php', 'php-cgi.exe');
-  var filesystem = require('fs');
-  if (filesystem.existsSync(portablePhp)) {
-    phpInterpreter = portablePhp;
-  }
-}
-
 // Start the test script:
 function startTestScript() {
   var testScriptFullPath =
-      path.join(applicationDirectory, 'php', 'phpinfo.php');
+      path.join(applicationDirectory, 'php-cgi', 'phpinfo.php');
 
   var testScriptOutput = '';
 
