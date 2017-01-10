@@ -28,26 +28,16 @@ phpScriptObject.stdoutFunction = function(stdout) {
 elephantHarness.startScript(phpScriptObject);
 ```
 
-## Electron Demo
-* Download the [elephant-harness package](https://github.com/ddmitov/elephant-harness).  
-* Download the [Electron binary package for your operating system](https://github.com/electron/electron/releases).  
-* Extract the downloaded elephant-harness package.  
-* Extract the downloaded Electron binary package inside the previously extracted ``elephant-harness-master/demo`` folder. Confirm merging of the ``resources`` subfolder of Electron with the ``resources`` subfolder of the demo.  
-* Start the Electron binary.  
-
-## NW.js Demo
-* Download the [elephant-harness package](https://github.com/ddmitov/elephant-harness).  
-* Download the [NW.js binary package for your operating system](http://nwjs.io/downloads/).  
-* Extract the downloaded NW.js binary package. It will create its own folder.  
-* Extract the downloaded elephant-harness package and copy everything inside its ``elephant-harness-master/demo`` folder in the folder of the NW.js binary.  
-* Start the NW.js binary.  
-
 ## Core Dependencies
 * ``child_process``
 * ``fs``
 
 ## External Dependency
-The only external dependency of elephant-harness is a PHP interpreter on PATH or any other PHP interpreter identified by its full pathname. elephant-harness npm package test will fail if no ``php`` binary is available on PATH. [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) demo application will fail if no ``php-cgi`` binary is available on PATH.
+The only external dependency of elephant-harness is a PHP interpreter on PATH or any other PHP interpreter identified by its full pathname.  
+elephant-harness npm package test will fail if no ``php`` binary is available on PATH.  
+[Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) demo application will fail if no ``php-cgi`` binary is available on PATH.  
+``php`` binary should be used in all [Node.js](http://nodejs.org/) command-line applications and test scripts.  
+``php-cgi`` binary should be used in all [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) applications.
 
 ## API
 
@@ -128,8 +118,16 @@ var data = document.getElementById('interactive-script-input').value;
 phpScriptObject.scriptHandler.stdin.write(data + '\n');
 ```
 
-## PHP Interpreter
-Any PHP interpreter is usable for elephant-harness - either a PHP interpreter on PATH or a PHP interpreter identified by its full pathname. ``php`` binary should be used in all [Node.js](http://nodejs.org/) command-line applications and test scripts. ``php-cgi`` binary should be used in all [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) applications.
+## Electron Demo
+* Download and extract the [elephant-harness package](https://github.com/ddmitov/elephant-harness).  
+* Download the [Electron binary package for your operating system](https://github.com/electron/electron/releases) and extract it inside the previously extracted ``elephant-harness-master/demo`` folder. Confirm merging of the ``resources`` subfolder of Electron with the ``resources`` subfolder of the demo.  
+* Start the Electron binary.  
+
+## NW.js Demo
+* Download and extract the [elephant-harness package](https://github.com/ddmitov/elephant-harness).  
+* Download and extract the [NW.js binary package for your operating system](http://nwjs.io/downloads/). It will create its own folder.  
+* Copy everything inside the ``elephant-harness-master/demo`` folder in the folder of the NW.js binary.  
+* Start the NW.js binary.  
 
 ## [Thanks and Credits](./CREDITS.md)
 

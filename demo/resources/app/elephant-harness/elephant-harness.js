@@ -1,6 +1,6 @@
 'use strict';
 
-// elephant-harness version 0.4.1
+// elephant-harness version 0.4.2
 // Node.js - Electron - NW.js controller for PHP scripts
 // elephant-harness is licensed under the terms of the MIT license.
 // Copyright (c) 2016 - 2017 Dimitar D. Mitov

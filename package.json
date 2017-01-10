@@ -1,14 +1,13 @@
 {
   "name": "elephant-harness",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Node.js - Electron - NW.js controller for PHP scripts",
   "main": "elephant-harness.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "nodejs test/elephant-harness-test.js",
-    "ci-test": "node test/elephant-harness-test.js"
+    "test": "node test/elephant-harness-test.js"
   },
   "repository": {
     "type": "git",
