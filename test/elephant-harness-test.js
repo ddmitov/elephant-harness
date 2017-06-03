@@ -24,11 +24,13 @@ var phpTestScript = new Object();
 phpTestScript.interpreter = "php";
 phpTestScript.scriptFullPath = phpTestScriptFullPath;
 
-// The following interpreter switches are added only
-// to test operation with switches separated with a whitespace:
+// The following interpreter switches are added only for testing purposes:
 // -e  Generate extended information for debugger/profiler
 // -H  Hide any passed arguments from external tools
-phpTestScript.interpreterSwitch = "-e -H";
+var interpreterSwitches = [];
+interpreterSwitches.push('-e');
+interpreterSwitches.push('-H');
+phpTestScript.interpreterSwitches = interpreterSwitches;
 
 phpTestScript.stdoutFunction = function(stdout) {
   console.log('elephant-harness STDOUT test: ' + stdout);

@@ -44,8 +44,10 @@ elephant-harness npm package test will fail if no ``php`` binary is available on
 const elephantHarness = require('elephant-harness');
 
 var phpScriptObject = new Object();
+
  // mandatory object property
 phpScriptObject.interpreter = 'php-cgi';
+
  // mandatory object property
 phpScriptObject.scriptFullPath = '/test/test.php';
 
@@ -62,7 +64,10 @@ phpScriptObject.exitFunction = function(exitCode) {
   console.log('PHP script exited with exit code ' + exitCode);
 }
 
-phpScriptObject.interpreterSwitches = '-q';
+// interpreter switches must be an array:
+var interpreterSwitches = [];
+interpreterSwitches.push('-q');
+phpScriptObject.interpreterSwitches = interpreterSwitches;
 
 phpScriptObject.method = 'POST';
 
