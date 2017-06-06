@@ -2,7 +2,7 @@ init:
   - git config --global core.autocrlf true
 
 install:
-  - cinst -y php -i
+  - choco install php
   - SET PATH=c:\tools\php;%PATH%
   - ps: Install-Product node $env:nodejs_version
   - npm install
