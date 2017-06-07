@@ -3,11 +3,6 @@ Thanks and Credits
 Amata mea Argeia - gratiam magnam tibi ago!  
 Patientia tua in studiis meis computatoriis auxilium meum maximum!  
 
-Thanks to Mingqi Shao for his very useful module ```parse-spawn-args```!  
-https://github.com/mingqi/parse-spawn-args  
-https://www.npmjs.com/package/parse-spawn-args  
-Interpreter arguments parsing of ```elephant-harness``` depends on a code fragment from his module.  
-
 ## Elephant Icon
 Thanks to Shrikant Rawa for his beautiful elephant icon!  
 License: CC Attribution 4.0  
@@ -25,7 +20,6 @@ http://stackoverflow.com/questions/15515549/node-js-writing-a-function-to-return
 http://stackoverflow.com/questions/9781214/parse-output-of-spawned-node-js-child-process-line-by-line  
 http://stackoverflow.com/questions/3133243/how-do-i-get-the-path-to-the-current-script-with-node-js  
 http://stackoverflow.com/questions/4482686/check-synchronously-if-file-directory-exists-in-node-js  
-http://stackoverflow.com/questions/2858121/convert-comma-separated-string-to-array  
 
 http://www.tutorialspoint.com/jquery/ajax-serialize.htm
 http://www.tutorialspoint.com/nodejs/nodejs_path_module.htm  
@@ -43,4 +37,4 @@ http://php.net/manual/en/function.phpversion.php
 http://alvinalexander.com/php/php-write-stderr-php-command-line-script-fwrite  
 
 ## AppVeyor
-http://help.appveyor.com/discussions/problems/5616-not-able-to-build-due-to-problem-in-chocolateyinstallps1  
+https://github.com/ChadSikorra/ps-install-php  
