@@ -1,8 +1,17 @@
 init:
   - git config --global core.autocrlf true
 
+environment:
+  matrix:
+    - PHP_VERSION: "5.6"
+    - PHP_VERSION: "7.0"
+    - PHP_VERSION: "7.1"
+
 install:
-  - choco install php
+  - ps: Invoke-WebRequest "https://raw.githubusercontent.com/ChadSikorra/ps-install-php/master/Install-PHP.ps1" -OutFile "Install-PHP.ps1"
+  - ps: .\Install-PHP.ps1 -Version $Env:PHP_VERSION -Highest -Arch x86
+  - refreshenv
+
   - SET PATH=c:\tools\php;%PATH%
   - ps: Install-Product node $env:nodejs_version
   - npm install
