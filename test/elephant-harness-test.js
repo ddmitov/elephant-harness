@@ -20,7 +20,7 @@ if (platform !== "win32") {
 var phpTestScriptFullPath = path.join(__dirname, "elephant-harness-test.php");
 
 // Initialize the PHP test script object:
-var phpTestScript = new Object();
+var phpTestScript = {};
 phpTestScript.interpreter = "php";
 phpTestScript.scriptFullPath = phpTestScriptFullPath;
 
@@ -43,7 +43,7 @@ phpTestScript.stderrFunction = function(stderr) {
 phpTestScript.exitFunction = function(exitCode) {
   console.log('elephant-harness PHP test script exited with exit code ' +
     exitCode);
-}
+};
 
 // Start the PHP test script:
 elephantHarness.startScript(phpTestScript);

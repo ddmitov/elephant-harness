@@ -1,6 +1,6 @@
 const elephantHarness = require('elephant-harness');
 
-var phpScriptObject = new Object();
+var phpScriptObject = {};
 phpScriptObject.interpreter = 'php';
 phpScriptObject.scriptFullPath = '/test/test.php';
 
