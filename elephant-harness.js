@@ -55,7 +55,7 @@ function checkScriptSettings(scriptObject) {
     console.log('Form data is supplied, but request method is not set.');
     return false;
   }
-};
+}
 
 module.exports.startScript = function(scriptObject) {
   var validScriptSettings = checkScriptSettings(scriptObject);
