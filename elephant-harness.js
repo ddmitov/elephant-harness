@@ -22,7 +22,7 @@
 const spawn = require('child_process').spawn;
 const filesystemObject = require('fs');
 
-module.exports.startScript = function(scriptObject) {
+function checkScriptSettings(scriptObject) {
   // PHP interpreter, full path of the PHP script and
   // name of the STDOUT handling function
   // are mandatory function parameter object properties.
@@ -31,14 +31,14 @@ module.exports.startScript = function(scriptObject) {
       typeof scriptObject.stdoutFunction !== 'function') {
     console.log('PHP interpreter, script full path or ' +
                 'STDOUT handling function name are not supplied.');
-    return;
+    return false;
   }
 
   // Check if the supplied script exists:
   filesystemObject.access(scriptObject.scriptFullPath, function(error) {
     if (error && error.code === 'ENOENT') {
       console.log(scriptObject.scriptFullPath + ' was not found.');
-      return;
+      return false;
     }
   });
 
@@ -47,12 +47,19 @@ module.exports.startScript = function(scriptObject) {
       scriptObject.formData === undefined) {
     console.log('Request method is ' + scriptObject.method + ', ' +
                 'but form data is not supplied.');
-    return;
+    return false;
   }
 
   if (scriptObject.method === undefined &&
       scriptObject.formData !== undefined) {
     console.log('Form data is supplied, but request method is not set.');
+    return false;
+  }
+};
+
+module.exports.startScript = function(scriptObject) {
+  var validScriptSettings = checkScriptSettings(scriptObject);
+  if (validScriptSettings === false) {
     return;
   }
 
