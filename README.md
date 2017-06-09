@@ -5,7 +5,6 @@ elephant-harness
 [![GitHub License](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE.md)
 [![NPM Version](https://img.shields.io/npm/v/elephant-harness.svg)](https://www.npmjs.com/package/elephant-harness)
 [![Travis CI Build Status](https://travis-ci.org/ddmitov/elephant-harness.svg?branch=master)](https://travis-ci.org/ddmitov/elephant-harness)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ddmitov/elephant-harness?branch=master&svg=true)](https://ci.appveyor.com/project/ddmitov/elephant-harness)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/11338/badge.svg)](https://scan.coverity.com/projects/ddmitov-elephant-harness)
 [![Known Vulnerabilities](https://snyk.io/test/github/ddmitov/elephant-harness/badge.svg)](https://snyk.io/test/github/ddmitov/elephant-harness)  
 

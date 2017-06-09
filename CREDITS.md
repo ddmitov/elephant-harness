@@ -30,6 +30,3 @@ http://justbuildsomething.com/node-js-best-practices/
 http://php.net/manual/en/function.phpversion.php  
 
 http://alvinalexander.com/php/php-write-stderr-php-command-line-script-fwrite  
-
-## AppVeyor
-https://github.com/ChadSikorra/ps-install-php  
