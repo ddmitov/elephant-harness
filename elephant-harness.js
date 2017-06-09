@@ -1,6 +1,6 @@
 'use strict';
 
-// elephant-harness version 0.5.2
+// elephant-harness version 0.6.0
 // Node.js - Electron - NW.js controller for PHP scripts
 // elephant-harness is licensed under the terms of the MIT license.
 // Copyright (c) 2016 - 2017 Dimitar D. Mitov
@@ -23,7 +23,7 @@ const spawn = require('child_process').spawn;
 const filesystemObject = require('fs');
 
 function checkScriptSettings(scriptObject) {
-  // PHP interpreter, full path of the PHP script and
+  // PHP interpreter, PHP script full path and
   // name of the STDOUT handling function
   // are mandatory function parameter object properties.
   if (scriptObject.interpreter === undefined ||
@@ -34,7 +34,7 @@ function checkScriptSettings(scriptObject) {
     return false;
   }
 
-  // Check if the supplied script exists:
+  // Check if script exists:
   filesystemObject.access(scriptObject.scriptFullPath, function(error) {
     if (error && error.code === 'ENOENT') {
       console.log(scriptObject.scriptFullPath + ' was not found.');
@@ -42,22 +42,24 @@ function checkScriptSettings(scriptObject) {
     }
   });
 
-  // If request method is set, form data must also be set and vice versa:
-  if (scriptObject.method !== undefined &&
-      scriptObject.formData === undefined) {
+  // If request method is set, form data must also be set:
+  if (scriptObject.formData === undefined &&
+      scriptObject.method !== undefined) {
     console.log('Request method is ' + scriptObject.method + ', ' +
                 'but form data is not supplied.');
     return false;
   }
 
-  if (scriptObject.method === undefined &&
-      scriptObject.formData !== undefined) {
+  // If form data is set, request method must also be set:
+  if (scriptObject.formData !== undefined &&
+      scriptObject.method === undefined) {
     console.log('Form data is supplied, but request method is not set.');
     return false;
   }
 }
 
 module.exports.startScript = function(scriptObject) {
+  // Check script settings:
   var validScriptSettings = checkScriptSettings(scriptObject);
   if (validScriptSettings === false) {
     return;

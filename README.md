@@ -17,7 +17,7 @@ elephant-harness is a small [Node.js](http://nodejs.org/) - [Electron](http://el
 ```javascript
 const elephantHarness = require('elephant-harness');
 
-var phpScriptObject = new Object();
+var phpScriptObject = {};
 phpScriptObject.interpreter = 'php';
 phpScriptObject.scriptFullPath = '/test/test.php';
 
@@ -43,7 +43,7 @@ elephant-harness npm package test will fail if no ``php`` binary is available on
 ```javascript
 const elephantHarness = require('elephant-harness');
 
-var phpScriptObject = new Object();
+var phpScriptObject = {};
 
  // mandatory object property
 phpScriptObject.interpreter = 'php-cgi';
@@ -103,11 +103,12 @@ elephantHarness.startScript(phpScriptObject);
   The ``php-cgi`` binary should be used together with the ``-q`` switch in [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) to enable quiet mode and suppress unnecessary HTTP header output.  
 
 * **method:**  
-  Only ``GET`` or ``POST`` are allowed.  
-  This object property has no effect if ``formData`` is not set.  
+  Only ``GET`` or ``POST`` are recognized.  
+  This object property requires ``formData`` to be set.  
 
 * **formData:**  
-  This object property has no effect if ``method`` is not set.  
+  This object property requires ``method`` to be set.  
+
   elephant-harness does not depend on [jQuery](https://jquery.com/), but it can be used for easy acquisition of form data:  
 
   ```javascript
