@@ -26,93 +26,90 @@ module.exports.startScript = function(scriptObject) {
   // PHP interpreter, full path of the PHP script and
   // name of the STDOUT handling function
   // are mandatory function parameter object properties.
-  if (scriptObject.interpreter !== undefined ||
-    scriptObject.scriptFullPath !== undefined ||
-    typeof scriptObject.stdoutFunction === 'function') {
-    // Check if the supplied script exists:
-    filesystemObject.access(scriptObject.scriptFullPath, function(error) {
-      if (error && error.code === 'ENOENT') {
-        console.log(scriptObject.scriptFullPath + ' was not found.');
-      } else {
-        var scriptEnvironment = process.env;
-
-        if (scriptObject.method !== undefined &&
-          (scriptObject.method === 'GET' || scriptObject.method === 'POST')) {
-          if (scriptObject.formData !== undefined &&
-            scriptObject.formData.length > 0) {
-            // Handle GET requests:
-            if (scriptObject.method === 'GET') {
-              scriptEnvironment['REQUEST_METHOD'] = 'GET';
-              scriptEnvironment['QUERY_STRING'] = scriptObject.formData;
-            }
-
-            // Handle POST requests:
-            if (scriptObject.method === 'POST') {
-              scriptEnvironment['REQUEST_METHOD'] = 'POST';
-              scriptEnvironment['CONTENT_LENGTH'] =
-                scriptObject.formData.length;
-            }
-          } else {
-            console.log('Request method is ' + method + ', ' +
-                        'but form data is not supplied.');
-          }
-        }
-
-        if (scriptObject.method === undefined &&
-          scriptObject.formData !== undefined &&
-          scriptObject.formData.length > 0) {
-          console.log('Form data is supplied, ' +
-                      'but request method is not set.');
-        }
-
-        // The full path of the script is the minimal interpreter argument:
-        var interpreterArguments = scriptObject.interpreterSwitches;
-        interpreterArguments.push(scriptObject.scriptFullPath);
-
-        // Run the supplied script:
-        scriptObject.scriptHandler =
-          spawn(scriptObject.interpreter,
-            interpreterArguments,
-            {env: scriptEnvironment}
-          );
-
-        // Send POST data to the script:
-        if (scriptObject.method !== undefined &&
-          scriptObject.method === 'POST' &&
-          scriptObject.formData !== undefined &&
-          scriptObject.formData.length > 0) {
-          scriptObject.scriptHandler.stdin.write(scriptObject.formData);
-        }
-
-        // Log script handler errors:
-        scriptObject.scriptHandler.on('error', function(error) {
-          console.log('camel-harness error stack: ' + error.stack);
-          console.log('camel-harness error code: ' + error.code);
-          console.log('camel-harness received signal: ' + error.signal);
-        });
-
-        // Handle STDOUT:
-        scriptObject.scriptHandler.stdout.on('data', function(data) {
-          scriptObject.stdoutFunction(data.toString('utf8'));
-        });
-
-        // Handle STDERR:
-        scriptObject.scriptHandler.stderr.on('data', function(data) {
-          if (typeof scriptObject.stderrFunction === 'function') {
-            scriptObject.stderrFunction(data.toString('utf8'));
-          }
-        });
-
-        // Handle script exit:
-        scriptObject.scriptHandler.on('exit', function(exitCode) {
-          if (typeof scriptObject.exitFunction === 'function') {
-            scriptObject.exitFunction(exitCode);
-          }
-        });
-      }
-    });
-  } else {
+  if (scriptObject.interpreter === undefined ||
+      scriptObject.scriptFullPath === undefined ||
+      typeof scriptObject.stdoutFunction !== 'function') {
     console.log('PHP interpreter, script full path or ' +
-                'STDOUT handling function name are not supplied.');
+                  'STDOUT handling function name are not supplied.');
+    return;
   }
+
+  // Check if the supplied script exists:
+  filesystemObject.access(scriptObject.scriptFullPath, function(error) {
+    if (error && error.code === 'ENOENT') {
+      console.log(scriptObject.scriptFullPath + ' was not found.');
+      return;
+    }
+  });
+
+  // If request method is set, form data must also be set and vice versa:
+  if (scriptObject.method !== undefined &&
+      scriptObject.formData === undefined) {
+    console.log('Request method is ' + scriptObject.method + ', ' +
+                'but form data is not supplied.');
+    return;
+  }
+
+  if (scriptObject.method === undefined &&
+      scriptObject.formData !== undefined) {
+    console.log('Form data is supplied, but request method is not set.');
+    return;
+  }
+
+  // Script environment inherits Node environment:
+  var scriptEnvironment = process.env;
+
+  // Handle GET requests:
+  if (scriptObject.method === 'GET') {
+    scriptEnvironment.REQUEST_METHOD = 'GET';
+    scriptEnvironment.QUERY_STRING = scriptObject.formData;
+  }
+
+  // Handle POST requests:
+  if (scriptObject.method === 'POST') {
+    scriptEnvironment.REQUEST_METHOD = 'POST';
+    scriptEnvironment.CONTENT_LENGTH = scriptObject.formData.length;
+  }
+
+  // The full path of the script is the minimal interpreter argument:
+  var interpreterArguments = scriptObject.interpreterSwitches;
+  interpreterArguments.push(scriptObject.scriptFullPath);
+
+  // Run the supplied script:
+  scriptObject.scriptHandler =
+    spawn(scriptObject.interpreter,
+      interpreterArguments,
+      {env: scriptEnvironment}
+    );
+
+  // Send POST data to the script:
+  if (scriptObject.method === 'POST') {
+    scriptObject.scriptHandler.stdin.write(scriptObject.formData);
+  }
+
+  // Log script handler errors:
+  scriptObject.scriptHandler.on('error', function(error) {
+    console.log('camel-harness error stack: ' + error.stack);
+    console.log('camel-harness error code: ' + error.code);
+    console.log('camel-harness received signal: ' + error.signal);
+  });
+
+  // Handle STDOUT:
+  scriptObject.scriptHandler.stdout.on('data', function(data) {
+    scriptObject.stdoutFunction(data.toString('utf8'));
+  });
+
+  // Handle STDERR:
+  scriptObject.scriptHandler.stderr.on('data', function(data) {
+    if (typeof scriptObject.stderrFunction === 'function') {
+      scriptObject.stderrFunction(data.toString('utf8'));
+    }
+  });
+
+  // Handle script exit:
+  scriptObject.scriptHandler.on('exit', function(exitCode) {
+    if (typeof scriptObject.exitFunction === 'function') {
+      scriptObject.exitFunction(exitCode);
+    }
+  });
 };
