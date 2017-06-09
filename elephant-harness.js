@@ -30,7 +30,7 @@ module.exports.startScript = function(scriptObject) {
       scriptObject.scriptFullPath === undefined ||
       typeof scriptObject.stdoutFunction !== 'function') {
     console.log('PHP interpreter, script full path or ' +
-                  'STDOUT handling function name are not supplied.');
+                'STDOUT handling function name are not supplied.');
     return;
   }
 

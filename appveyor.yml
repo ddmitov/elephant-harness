@@ -3,7 +3,7 @@ init:
 
 install:
   - ps: Invoke-WebRequest "https://raw.githubusercontent.com/ChadSikorra/ps-install-php/master/Install-PHP.ps1" -OutFile "Install-PHP.ps1"
-  - ps: .\Install-PHP.ps1 -Highest -Version 5.6 -Arch x86
+  - ps: .\Install-PHP.ps1 -Highest -Version 5.7 -Arch x86
   - refreshenv
 
   - ps: Install-Product node $env:nodejs_version
