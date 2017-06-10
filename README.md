@@ -69,10 +69,12 @@ var interpreterSwitches = [];
 interpreterSwitches.push('-q');
 phpScriptObject.interpreterSwitches = interpreterSwitches;
 
-phpScriptObject.method = 'POST';
+phpScriptObject.requestMethod = 'POST';
 
-var formData = $('#form-id').serialize();
-phpScriptObject.formData = formData;
+phpScriptObject.inputDataHarvester = function() {
+  var formData = $('#form-id').serialize();
+  return formData;
+}
 
 elephantHarness.startScript(phpScriptObject);
 ```
@@ -102,17 +104,23 @@ elephantHarness.startScript(phpScriptObject);
   They are supplied to the PHP interpreter on runtime.  
   The ``php-cgi`` binary should be used together with the ``-q`` switch in [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) to enable quiet mode and suppress unnecessary HTTP header output.  
 
-* **method:**  
+* **requestMethod:**  
   Only ``GET`` or ``POST`` are recognized.  
-  This object property requires ``formData`` to be set.  
+  This object property requires ``inputData`` to be set.  
 
-* **formData:**  
-  This object property requires ``method`` to be set.  
+* **inputData:**  
+  This object property requires ``requestMethod`` to be set.  
+
+* **inputDataHarvester:**  
+  ``inputDataHarvester`` object property has to contain the name of a valid function that can harvest data from an HTML form or any other data source and supply it as its return value. If ``inputData`` is not defined and ``inputDataHarvester`` function is available, it will be used as an input data source.  
 
   elephant-harness does not depend on [jQuery](https://jquery.com/), but it can be used for easy acquisition of form data:  
 
   ```javascript
-  var formData = $('#form-id').serialize();
+  phpScriptObject.inputDataHarvester = function() {
+    var formData = $('#form-id').serialize();
+    return formData;
+  }
   ```
 
 ## Interactive Scripts

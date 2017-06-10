@@ -1,6 +1,6 @@
 'use strict';
 
-// elephant-harness version 0.6.0
+// elephant-harness version 0.7.0
 // Node.js - Electron - NW.js controller for PHP scripts
 // elephant-harness is licensed under the terms of the MIT license.
 // Copyright (c) 2016 - 2017 Dimitar D. Mitov
@@ -42,18 +42,20 @@ function checkScriptSettings(scriptObject) {
     }
   });
 
-  // If request method is set, form data must also be set:
-  if (scriptObject.formData === undefined &&
-      scriptObject.method !== undefined) {
-    console.log('Request method is ' + scriptObject.method + ', ' +
-                'but form data is not supplied.');
+  // If requestMethod is set, inputData or inputDataHarvester must also be set:
+  if (scriptObject.inputData === undefined &&
+      scriptObject.inputDataHarvester == undefined &&
+      scriptObject.requestMethod !== undefined) {
+    console.log('Request method is ' + scriptObject.requestMethod + ', ' +
+                'but input data can not be accessed.');
     return false;
   }
 
-  // If form data is set, request method must also be set:
-  if (scriptObject.formData !== undefined &&
-      scriptObject.method === undefined) {
-    console.log('Form data is supplied, but request method is not set.');
+  // If inputData is set, requestMethod must also be set:
+  if (scriptObject.inputData !== undefined &&
+      scriptObject.inputDataHarvester == undefined &&
+      scriptObject.requestMethod === undefined) {
+    console.log('Input data is available, but request method is not set.');
     return false;
   }
 }
@@ -65,19 +67,27 @@ module.exports.startScript = function(scriptObject) {
     return;
   }
 
+  // If inputData is not defined in the function parameter object,
+  // inputDataHarvester function can be used as an alternative input data source:
+  if (scriptObject.inputData === undefined &&
+      scriptObject.requestMethod !== undefined &&
+      typeof scriptObject.inputDataHarvester === 'function') {
+    scriptObject.inputData = inputDataHarvester();
+  }
+
   // Script environment inherits Node environment:
   var scriptEnvironment = process.env;
 
   // Handle GET requests:
-  if (scriptObject.method === 'GET') {
+  if (scriptObject.requestMethod === 'GET') {
     scriptEnvironment.REQUEST_METHOD = 'GET';
-    scriptEnvironment.QUERY_STRING = scriptObject.formData;
+    scriptEnvironment.QUERY_STRING = scriptObject.inputData;
   }
 
   // Handle POST requests:
-  if (scriptObject.method === 'POST') {
+  if (scriptObject.requestMethod === 'POST') {
     scriptEnvironment.REQUEST_METHOD = 'POST';
-    scriptEnvironment.CONTENT_LENGTH = scriptObject.formData.length;
+    scriptEnvironment.CONTENT_LENGTH = scriptObject.inputData.length;
   }
 
   // The full path of the script is the minimal interpreter argument:
@@ -92,8 +102,8 @@ module.exports.startScript = function(scriptObject) {
     );
 
   // Send POST data to the script:
-  if (scriptObject.method === 'POST') {
-    scriptObject.scriptHandler.stdin.write(scriptObject.formData);
+  if (scriptObject.requestMethod === 'POST') {
+    scriptObject.scriptHandler.stdin.write(scriptObject.inputData);
   }
 
   // Log script handler errors:
