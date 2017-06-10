@@ -44,7 +44,7 @@ function checkScriptSettings(scriptObject) {
 
   // If requestMethod is set, inputData or inputDataHarvester must also be set:
   if (scriptObject.inputData === undefined &&
-      scriptObject.inputDataHarvester == undefined &&
+      scriptObject.inputDataHarvester === undefined &&
       scriptObject.requestMethod !== undefined) {
     console.log('Request method is ' + scriptObject.requestMethod + ', ' +
                 'but input data can not be accessed.');
@@ -53,7 +53,7 @@ function checkScriptSettings(scriptObject) {
 
   // If inputData is set, requestMethod must also be set:
   if (scriptObject.inputData !== undefined &&
-      scriptObject.inputDataHarvester == undefined &&
+      scriptObject.inputDataHarvester === undefined &&
       scriptObject.requestMethod === undefined) {
     console.log('Input data is available, but request method is not set.');
     return false;
@@ -72,7 +72,7 @@ module.exports.startScript = function(scriptObject) {
   if (scriptObject.inputData === undefined &&
       scriptObject.requestMethod !== undefined &&
       typeof scriptObject.inputDataHarvester === 'function') {
-    scriptObject.inputData = inputDataHarvester();
+    scriptObject.inputData = scriptObject.inputDataHarvester();
   }
 
   // Script environment inherits Node environment:
