@@ -135,7 +135,7 @@ elephantHarness.startScript(phpScriptObject);
   ```
 
 ## Interactive Scripts
-elephant-harness can also start and communicate with interactive scripts having their own event loops and capable of repeatedly receiving STDIN input. Use the following code to send data to the standard input of an interactive script waiting for data on STDIN:
+elephant-harness can also start and communicate with interactive scripts having their own event loops and capable of repeatedly receiving STDIN input. Use the following code to send data to an interactive script waiting for input on STDIN:
 
 ```javascript
 var data = document.getElementById('interactive-script-input').value;
