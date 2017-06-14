@@ -1,6 +1,6 @@
 {
   "name": "elephant-harness",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Node.js - Electron - NW.js controller for PHP scripts",
   "main": "elephant-harness.js",
   "directories": {
