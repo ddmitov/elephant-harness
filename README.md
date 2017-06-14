@@ -90,16 +90,16 @@ elephantHarness.startScript(phpScriptObject);
 
 * **phpInterpreter:**  
   This is the full pathname of a PHP interpreter or just the filename of a PHP interpreter on PATH.  
-  This object property is mandatory.  
+  *This object property is mandatory.*  
 
 * **scriptFullPath:**  
   This is the full path of the PHP script that is going to be executed.  
-  This object property is mandatory.  
+  *This object property is mandatory.*  
 
 * **stdoutFunction:**  
   This is the function that will be executed every time when output is available on STDOUT.  
   The only parameter passed to the ``stdoutFunction`` is the STDOUT string.  
-  This object property is mandatory.  
+  *This object property is mandatory.*  
 
 * **stderrFunction:**  
   This is the function that will be executed every time when output is available on STDERR.  
