@@ -60,12 +60,11 @@ phpScriptObject.stderrFunction = function(stderr) {
   console.log('PHP script STDERR:\n' + stderr);
 }
 
-phpTestScript.errorFunction = function(error) {
+phpScriptObject.errorFunction = function(error) {
   if (error && error.code === 'ENOENT') {
     console.log('PHP interpreter was not found.');
-    return false;
   }
-};
+}
 
 phpScriptObject.exitFunction = function(exitCode) {
   console.log('PHP script exited with exit code ' + exitCode);
@@ -96,7 +95,7 @@ elephantHarness.startScript(phpScriptObject);
 
 * **stdoutFunction:**  
   This is the name of the function that will be executed every time when output is available on STDOUT.  
-  The only parameter passed to the ``stdoutFunction`` function is the STDOUT string.  
+  The only parameter passed to the ``stdoutFunction`` is the STDOUT string.  
   This object property is mandatory.  
 
 * **stderrFunction:**  
@@ -104,7 +103,7 @@ elephantHarness.startScript(phpScriptObject);
   The only parameter passed to this function is the STDERR string.  
 
 * **errorFunction:**  
-  This is the name of the function that will be executed on script errors.
+  This is the name of the function that will be executed on script errors.  
   The only parameter passed to this function is the error object.  
   The ``errorFunction`` could be useful for displaying a message when PHP interpreter is not found.  
 

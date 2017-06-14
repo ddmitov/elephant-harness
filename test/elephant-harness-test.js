@@ -43,7 +43,6 @@ phpTestScript.stderrFunction = function(stderr) {
 phpTestScript.errorFunction = function(error) {
   if (error && error.code === 'ENOENT') {
     console.log('PHP interpreter was not found.');
-    return false;
   }
 };
 
