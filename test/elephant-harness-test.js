@@ -40,6 +40,13 @@ phpTestScript.stderrFunction = function(stderr) {
   console.log('elephant-harness STDERR test: ' + stderr);
 };
 
+phpTestScript.errorFunction = function(error) {
+  if (error && error.code === 'ENOENT') {
+    console.log('PHP interpreter was not found.');
+    return false;
+  }
+};
+
 phpTestScript.exitFunction = function(exitCode) {
   console.log('elephant-harness PHP test script exited with exit code ' +
     exitCode);

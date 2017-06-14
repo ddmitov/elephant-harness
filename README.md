@@ -7,9 +7,9 @@ elephant-harness
 [![Travis CI Build Status](https://travis-ci.org/ddmitov/elephant-harness.svg?branch=master)](https://travis-ci.org/ddmitov/elephant-harness)
 [![bitHound Overall Score](https://www.bithound.io/github/ddmitov/elephant-harness/badges/score.svg)](https://www.bithound.io/github/ddmitov/elephant-harness)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/11338/badge.svg)](https://scan.coverity.com/projects/ddmitov-elephant-harness)
-[![Known Vulnerabilities](https://snyk.io/test/github/ddmitov/elephant-harness/badge.svg)](https://snyk.io/test/github/ddmitov/elephant-harness)  
+[![Snyk Status](https://snyk.io/test/github/ddmitov/elephant-harness/badge.svg)](https://snyk.io/test/github/ddmitov/elephant-harness)  
 
-elephant-harness is a small [Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) library for asynchronous handling of [PHP](http://php.net/) scripts.
+[Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) library for asynchronous handling of [PHP](http://php.net/) scripts
 
 ## Quick Start
 ``npm install elephant-harness``  
@@ -60,6 +60,13 @@ phpScriptObject.stderrFunction = function(stderr) {
   console.log('PHP script STDERR:\n' + stderr);
 }
 
+phpTestScript.errorFunction = function(error) {
+  if (error && error.code === 'ENOENT') {
+    console.log('PHP interpreter was not found.');
+    return false;
+  }
+};
+
 phpScriptObject.exitFunction = function(exitCode) {
   console.log('PHP script exited with exit code ' + exitCode);
 }
@@ -89,16 +96,21 @@ elephantHarness.startScript(phpScriptObject);
 
 * **stdoutFunction:**  
   This is the name of the function that will be executed every time when output is available on STDOUT.  
-  The only parameter passed to the ``stdoutFunction`` function is the ``stdout`` string.  
+  The only parameter passed to the ``stdoutFunction`` function is the STDOUT string.  
   This object property is mandatory.  
 
 * **stderrFunction:**  
   This is the name of the function that will be executed every time when output is available on STDERR.  
-  The only parameter passed to this function is the ``stderr`` string.  
+  The only parameter passed to this function is the STDERR string.  
+
+* **errorFunction:**  
+  This is the name of the function that will be executed on script errors.
+  The only parameter passed to this function is the error object.  
+  The ``errorFunction`` could be useful for displaying a message when PHP interpreter is not found.  
 
 * **exitFunction:**  
   This is the name of the function that will be executed when a PHP script is finished.  
-  The only parameter passed to this function is the ``exitCode`` string.  
+  The only parameter passed to this function is the exit code string.  
 
 * **interpreterSwitches:**  
   They are supplied to the PHP interpreter on runtime.  

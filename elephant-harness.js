@@ -1,6 +1,6 @@
 'use strict';
 
-// elephant-harness version 0.7.0
+// elephant-harness version 0.8.0
 // Node.js - Electron - NW.js controller for PHP scripts
 // elephant-harness is licensed under the terms of the MIT license.
 // Copyright (c) 2016 - 2017 Dimitar D. Mitov
@@ -106,11 +106,15 @@ module.exports.startScript = function(scriptObject) {
     scriptObject.scriptHandler.stdin.write(scriptObject.inputData);
   }
 
-  // Log script handler errors:
+  // Handle script errors:
   scriptObject.scriptHandler.on('error', function(error) {
-    console.log('camel-harness error stack: ' + error.stack);
-    console.log('camel-harness error code: ' + error.code);
-    console.log('camel-harness received signal: ' + error.signal);
+    if (typeof scriptObject.errorFunction === 'function') {
+      scriptObject.errorFunction(error);
+    } else {
+      console.log('camel-harness error stack: ' + error.stack);
+      console.log('camel-harness error code: ' + error.code);
+      console.log('camel-harness received signal: ' + error.signal);
+    }
   });
 
   // Handle STDOUT:
