@@ -123,9 +123,9 @@ elephantHarness.startScript(phpScriptObject);
   This object property requires ``requestMethod`` to be set.  
 
 * **inputDataHarvester:**  
-  ``inputDataHarvester`` is a function that can harvest input data from an HTML form or any other data source and supply it as its return value. If ``inputData`` is defined, ``inputDataHarvester`` will not be used, but if ``inputData`` is not defined and ``inputDataHarvester`` is available, it will be used as an input data source.  
+  This is a function that can harvest input data from an HTML form or any other data source and supply it as its return value. If ``inputData`` is defined, ``inputDataHarvester`` will not be used, but if ``inputData`` is not defined and ``inputDataHarvester`` is available, it will be used as an input data source.  
 
-  elephant-harness does not depend on [jQuery](https://jquery.com/), but it can be used for easy acquisition of form data:  
+  elephant-harness does not depend on [jQuery](https://jquery.com/), but it can be used for easy acquisition of HTML form data:  
 
   ```javascript
   phpScriptObject.inputDataHarvester = function() {
