@@ -33,8 +33,11 @@ elephantHarness.startScript(phpScriptObject);
 * ``fs``
 
 ## External Dependency
-The only external dependency of elephant-harness is a PHP interpreter on PATH or any other PHP interpreter identified by its full pathname.  
+The only external dependency of elephant-harness is a PHP interpreter on PATH or  
+any other PHP interpreter identified by its full pathname.  
+
 elephant-harness npm package test will fail if no ``php`` binary is available on PATH.  
+
 ``php`` binary should be used in all [Node.js](http://nodejs.org/) command-line applications and test scripts.  
 ``php-cgi`` binary should be used in all [Node.js](http://nodejs.org/) web applications, as well as in all [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) applications.
 
