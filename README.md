@@ -94,21 +94,21 @@ elephantHarness.startScript(phpScriptObject);
   This object property is mandatory.  
 
 * **stdoutFunction:**  
-  This is the name of the function that will be executed every time when output is available on STDOUT.  
+  This is the function that will be executed every time when output is available on STDOUT.  
   The only parameter passed to the ``stdoutFunction`` is the STDOUT string.  
   This object property is mandatory.  
 
 * **stderrFunction:**  
-  This is the name of the function that will be executed every time when output is available on STDERR.  
+  This is the function that will be executed every time when output is available on STDERR.  
   The only parameter passed to this function is the STDERR string.  
 
 * **errorFunction:**  
-  This is the name of the function that will be executed on script errors.  
+  This is the function that will be executed on script error.  
   The only parameter passed to this function is the error object.  
   The ``errorFunction`` could be useful for displaying a message when PHP interpreter is not found.  
 
 * **exitFunction:**  
-  This is the name of the function that will be executed when a PHP script is finished.  
+  This is the function that will be executed when a PHP script is finished.  
   The only parameter passed to this function is the exit code string.  
 
 * **interpreterSwitches:**  
@@ -123,7 +123,7 @@ elephantHarness.startScript(phpScriptObject);
   This object property requires ``requestMethod`` to be set.  
 
 * **inputDataHarvester:**  
-  ``inputDataHarvester`` object property has to contain the name of a valid function that can harvest data from an HTML form or any other data source and supply it as its return value. If ``inputData`` is not defined and ``inputDataHarvester`` function is available, it will be used as an input data source.  
+  ``inputDataHarvester`` is a function that can harvest input data from an HTML form or any other data source and supply it as its return value. If ``inputData`` is defined, ``inputDataHarvester`` will not be used, but if ``inputData`` is not defined and ``inputDataHarvester`` is available, it will be used as an input data source.  
 
   elephant-harness does not depend on [jQuery](https://jquery.com/), but it can be used for easy acquisition of form data:  
 
