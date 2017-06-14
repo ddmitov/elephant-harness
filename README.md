@@ -3,7 +3,7 @@ elephant-harness
 
 [![GitHub Version](https://img.shields.io/github/release/ddmitov/elephant-harness.svg)](https://github.com/ddmitov/elephant-harness/releases)
 [![GitHub License](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE.md)
-[![NPM Version](https://img.shields.io/npm/v/elephant-harness.svg)](https://www.npmjs.com/package/elephant-harness)
+[![NPM Version](https://img.shields.io/npm/v/elephant-harness.svg)](https://www.npmjs.com/package/elephant-harness)  
 [![Travis CI Build Status](https://travis-ci.org/ddmitov/elephant-harness.svg?branch=master)](https://travis-ci.org/ddmitov/elephant-harness)
 [![bitHound Overall Score](https://www.bithound.io/github/ddmitov/elephant-harness/badges/score.svg)](https://www.bithound.io/github/ddmitov/elephant-harness)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/11338/badge.svg)](https://scan.coverity.com/projects/ddmitov-elephant-harness)
@@ -58,17 +58,17 @@ phpScriptObject.stdoutFunction = function(stdout) {
 
 phpScriptObject.stderrFunction = function(stderr) {
   console.log('PHP script STDERR:\n' + stderr);
-}
+};
 
 phpScriptObject.errorFunction = function(error) {
   if (error && error.code === 'ENOENT') {
     console.log('PHP interpreter was not found.');
   }
-}
+};
 
 phpScriptObject.exitFunction = function(exitCode) {
   console.log('PHP script exited with exit code ' + exitCode);
-}
+};
 
 // interpreter switches must be an array:
 var interpreterSwitches = [];
@@ -85,7 +85,7 @@ phpScriptObject.inputDataHarvester = function() {
 elephantHarness.startScript(phpScriptObject);
 ```
 
-  * **phpInterpreter:**  
+* **phpInterpreter:**  
   This is the full pathname of a PHP interpreter or just the filename of a PHP interpreter on PATH.  
   This object property is mandatory.  
 
