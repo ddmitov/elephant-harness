@@ -38,9 +38,9 @@ any other PHP interpreter identified by its full pathname.
 
 elephant-harness npm package test will fail if no ``php`` binary is available on PATH.  
 
-``php`` binary should be used in all [Node.js](http://nodejs.org/) command-line applications and test scripts.  
+``php`` binary should be used in [Node.js](http://nodejs.org/) applications and test scripts.  
 
-``php-cgi`` binary should be used in all [Electron](http://electron.atom.io/), [NW.js](http://nwjs.io/) and [Node.js](http://nodejs.org/) web applications.
+``php-cgi`` binary should be used in all [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) applications.
 
 ## API
 
