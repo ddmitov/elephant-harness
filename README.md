@@ -39,7 +39,9 @@ any other PHP interpreter identified by its full pathname.
 elephant-harness npm package test will fail if no ``php`` binary is available on PATH.  
 
 ``php`` binary should be used in all [Node.js](http://nodejs.org/) command-line applications and test scripts.  
-``php-cgi`` binary should be used in all [Node.js](http://nodejs.org/) web applications, as well as in all [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) applications.
+
+``php-cgi`` binary should be used in all [Node.js](http://nodejs.org/) web applications,  
+as well as in all [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) applications.
 
 ## API
 
@@ -108,7 +110,7 @@ elephantHarness.startScript(phpScriptObject);
 * **errorFunction:**  
   This is the function that will be executed on script error.  
   The only parameter passed to this function is the error object.  
-  The ``errorFunction`` could be useful for displaying a message when PHP interpreter is not found.  
+  The ``errorFunction`` could be used for displaying a message when PHP interpreter is not found.  
 
 * **exitFunction:**  
   This is the function that will be executed when a PHP script is finished.  
@@ -116,7 +118,8 @@ elephantHarness.startScript(phpScriptObject);
 
 * **interpreterSwitches:**  
   They are supplied to the PHP interpreter on runtime.  
-  The ``php-cgi`` binary should be used together with the ``-q`` switch in [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) to enable quiet mode and suppress unnecessary HTTP header output.  
+  The ``php-cgi`` binary should be used with the ``-q`` switch in [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/)  
+  to enable quiet mode and suppress unnecessary HTTP header output.  
 
 * **requestMethod:**  
   Only ``GET`` or ``POST`` are recognized.  
@@ -128,7 +131,16 @@ elephantHarness.startScript(phpScriptObject);
 * **inputDataHarvester:**  
   This is a function that can harvest input data from an HTML form or any other data source and supply it as its return value. If ``inputData`` is defined, ``inputDataHarvester`` will not be used, but if ``inputData`` is not defined and ``inputDataHarvester`` is available, it will be used as an input data source.  
 
-  elephant-harness does not depend on [jQuery](https://jquery.com/), but it can be used for easy acquisition of HTML form data:  
+  Single input box simple example with no dependencies:  
+
+  ```javascript
+  phpScriptObject.inputDataHarvester = function() {
+    var data = document.getElementById('input-box-id').value;
+    return data;
+  }
+  ```
+
+  Whole form simple example based on [jQuery](https://jquery.com/):  
 
   ```javascript
   phpScriptObject.inputDataHarvester = function() {
