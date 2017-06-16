@@ -9,7 +9,7 @@ elephant-harness
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/11338/badge.svg)](https://scan.coverity.com/projects/ddmitov-elephant-harness)
 [![Snyk Status](https://snyk.io/test/github/ddmitov/elephant-harness/badge.svg)](https://snyk.io/test/github/ddmitov/elephant-harness)  
 
-[Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) library for asynchronous handling of [PHP](http://php.net/) scripts
+[Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) package for asynchronous handling of [PHP](http://php.net/) scripts
 
 ## Quick Start
 ``npm install elephant-harness``  
@@ -83,8 +83,8 @@ phpScriptObject.interpreterSwitches = interpreterSwitches;
 phpScriptObject.requestMethod = 'POST';
 
 phpScriptObject.inputDataHarvester = function() {
-  var formData = $('#form-id').serialize();
-  return formData;
+  var data = document.getElementById('input-box-id').value;
+  return data;
 }
 
 elephantHarness.startScript(phpScriptObject);
