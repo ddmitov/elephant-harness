@@ -40,8 +40,7 @@ elephant-harness npm package test will fail if no ``php`` binary is available on
 
 ``php`` binary should be used in all [Node.js](http://nodejs.org/) command-line applications and test scripts.  
 
-``php-cgi`` binary should be used in all [Node.js](http://nodejs.org/) web applications,  
-as well as in all [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) applications.
+``php-cgi`` binary should be used in all [Node.js](http://nodejs.org/) web applications and in all [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) applications.
 
 ## API
 
