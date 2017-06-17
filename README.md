@@ -153,7 +153,7 @@ elephant-harness can also start and communicate with interactive scripts having 
 
 ```javascript
 var data = document.getElementById('interactive-script-input').value;
-phpScriptObject.scriptHandler.stdin.write(data + '\n');
+phpScriptObject.scriptHandler.stdin.write(data);
 ```
 
 ## [Electron Demo](https://www.npmjs.com/package/elephant-harness-demo-electron)
