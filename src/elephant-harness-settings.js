@@ -20,19 +20,19 @@ const filesystemObject = require('fs');
 module.exports.checkSettings = function(script) {
   var scriptSettingsOk = true;
 
-  // PHP interpreter, PHP script full path and
-  // name of the STDOUT handling function
-  // are mandatory function parameter object properties.
+  // Interpreter is mandatory script object property.
   if (script.interpreter === undefined) {
     console.log('elephant-harness: PHP interpreter is not supplied.');
     scriptSettingsOk = false;
   }
 
+  // Script full path is mandatory script object property.
   if (script.scriptFullPath === undefined) {
     console.log('elephant-harness: Script full path is not supplied.');
     scriptSettingsOk = false;
   }
 
+  // Script STDOUT handling function is mandatory script object property.
   if (typeof script.stdoutFunction !== 'function') {
     console.log('elephant-harness: STDOUT handling function is not defined.');
     scriptSettingsOk = false;
@@ -67,12 +67,13 @@ module.exports.checkSettings = function(script) {
 };
 
 function checkScriptExistence(scriptFullPath) {
+  // This function returns only after file existence check is complete.
   var scriptExists = true;
 
   try {
     filesystemObject.accessSync(scriptFullPath);
   } catch (exception) {
-    console.log('elephant-harness: ' + scriptFullPath + ' not found.');
+    console.log('elephant-harness: ' + scriptFullPath + 'is not found.');
     scriptExists = false;
   }
 
