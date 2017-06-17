@@ -64,7 +64,7 @@ module.exports.checkSettings = function(script) {
   }
 
   return scriptSettingsOk;
-}
+};
 
 function checkScriptExistence(scriptFullPath) {
   var scriptExists = true;

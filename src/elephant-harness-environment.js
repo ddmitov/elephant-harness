@@ -32,4 +32,4 @@ module.exports.setEnvironment = function(script) {
   }
 
   return scriptEnvironment;
-}
+};

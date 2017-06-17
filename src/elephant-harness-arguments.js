@@ -28,4 +28,4 @@ module.exports.setArguments = function(script) {
   // The full path of the script is the minimal interpreter argument:
   interpreterArguments.push(script.scriptFullPath);
   return interpreterArguments;
-}
+};
