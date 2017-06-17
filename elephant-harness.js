@@ -44,8 +44,8 @@ function checkScriptSettings(scriptObject) {
   }
 
   // Start script existence check:
-  if (scriptObject.scriptFullPath !== undefined) {
-    if (checkScriptExistence(scriptObject.scriptFullPath) === false) {
+  if (scriptObject.scriptFullPath !== undefined &&
+      checkScriptExistence(scriptObject.scriptFullPath) === false) {
       scriptSettingsOk = false;
     }
   }
@@ -79,8 +79,8 @@ function checkScriptExistence(scriptFullPath) {
     filesystemObject.accessSync(scriptFullPath);
   } catch (exception) {
     console.log('elephant-harness: \n' +
-                scriptObject.scriptFullPath + ' was not found.');
-    scriptSettingsOk = false;
+                scriptFullPath + ' was not found.');
+    scriptExists = false;
   }
 
   return scriptExists;
