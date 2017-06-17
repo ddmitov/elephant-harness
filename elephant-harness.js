@@ -46,8 +46,7 @@ function checkScriptSettings(scriptObject) {
   // Start script existence check:
   if (scriptObject.scriptFullPath !== undefined &&
       checkScriptExistence(scriptObject.scriptFullPath) === false) {
-      scriptSettingsOk = false;
-    }
+    scriptSettingsOk = false;
   }
 
   // If requestMethod is set, inputData or inputDataHarvester must also be set:
