@@ -2,7 +2,7 @@
   "name": "elephant-harness",
   "version": "0.8.2",
   "description": "Node.js - Electron - NW.js controller for PHP scripts",
-  "main": "elephant-harness.js",
+  "main": "src/elephant-harness.js",
   "directories": {
     "test": "test"
   },

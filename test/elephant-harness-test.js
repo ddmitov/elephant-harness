@@ -3,7 +3,7 @@
 // elephant-harness test
 
 // Load the elephant-harness package:
-var elephantHarness = require("../elephant-harness.js");
+var elephantHarness = require("../src/elephant-harness.js");
 
 // Determine the operating system and initialize a suitable 'path' object:
 var os = require('os');
