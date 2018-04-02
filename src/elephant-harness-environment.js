@@ -3,7 +3,7 @@
 // elephant-harness
 // Node.js - Electron - NW.js controller for PHP scripts
 // elephant-harness is licensed under the terms of the MIT license.
-// Copyright (c) 2016 - 2017 Dimitar D. Mitov
+// Copyright (c) 2016 - 2018 Dimitar D. Mitov
 
 // THE SOFTWARE IS PROVIDED "AS IS",
 // WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
@@ -17,7 +17,7 @@
 
 module.exports.setEnvironment = function(script) {
   // Script environment inherits Node environment:
-  var scriptEnvironment = process.env;
+  let scriptEnvironment = process.env;
 
   // Handle GET requests:
   if (script.requestMethod === 'GET') {

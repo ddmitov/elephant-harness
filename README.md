@@ -15,9 +15,9 @@ elephant-harness
 ``npm install elephant-harness``  
 
 ```javascript
-const elephantHarness = require('elephant-harness');
+const ELEPHANT_HARNESS = require('elephant-harness');
 
-var phpScriptObject = {};
+let phpScriptObject = {};
 phpScriptObject.interpreter = 'php';
 phpScriptObject.scriptFullPath = '/test/test.php';
 
@@ -25,7 +25,7 @@ phpScriptObject.stdoutFunction = function(stdout) {
   console.log(stdout);
 };
 
-elephantHarness.startScript(phpScriptObject);
+ELEPHANT_HARNESS.startScript(phpScriptObject);
 ```
 
 ## Core Dependencies
@@ -45,9 +45,9 @@ elephant-harness npm package test will fail if no ``php`` binary is available on
 ## API
 
 ```javascript
-const elephantHarness = require('elephant-harness');
+const ELEPHANT_HARNESS = require('elephant-harness');
 
-var phpScriptObject = {};
+let phpScriptObject = {};
 
  // mandatory object property
 phpScriptObject.interpreter = 'php-cgi';
@@ -61,7 +61,8 @@ phpScriptObject.stdoutFunction = function(stdout) {
 };
 
 phpScriptObject.stderrFunction = function(stderr) {
-  console.log('PHP script STDERR:\n' + stderr);
+  console.log('PHP script STDERR:\n');
+  console.log(stderr);
 };
 
 phpScriptObject.errorFunction = function(error) {
@@ -71,22 +72,22 @@ phpScriptObject.errorFunction = function(error) {
 };
 
 phpScriptObject.exitFunction = function(exitCode) {
-  console.log('PHP script exited with exit code ' + exitCode);
+  console.log(`PHP script exited with exit code ${exitCode}`);
 };
 
 // interpreter switches must be an array:
-var interpreterSwitches = [];
+let interpreterSwitches = [];
 interpreterSwitches.push('-q');
 phpScriptObject.interpreterSwitches = interpreterSwitches;
 
 phpScriptObject.requestMethod = 'POST';
 
 phpScriptObject.inputDataHarvester = function() {
-  var data = document.getElementById('input-box-id').value;
+  let data = document.getElementById('input-box-id').value;
   return data;
 }
 
-elephantHarness.startScript(phpScriptObject);
+ELEPHANT_HARNESS.startScript(phpScriptObject);
 ```
 
 * **phpInterpreter:**  
@@ -134,7 +135,7 @@ elephantHarness.startScript(phpScriptObject);
 
   ```javascript
   phpScriptObject.inputDataHarvester = function() {
-    var data = document.getElementById('input-box-id').value;
+    let data = document.getElementById('input-box-id').value;
     return data;
   }
   ```
@@ -143,7 +144,7 @@ elephantHarness.startScript(phpScriptObject);
 
   ```javascript
   phpScriptObject.inputDataHarvester = function() {
-    var formData = $('#form-id').serialize();
+    let formData = $('#form-id').serialize();
     return formData;
   }
   ```
@@ -152,7 +153,7 @@ elephantHarness.startScript(phpScriptObject);
 elephant-harness can also start and communicate with interactive scripts having their own event loops and capable of repeatedly receiving STDIN input. Use the following code to send data to an interactive script waiting for input on STDIN:
 
 ```javascript
-var data = document.getElementById('interactive-script-input').value;
+let data = document.getElementById('interactive-script-input').value;
 phpScriptObject.scriptHandler.stdin.write(data);
 ```
 
@@ -163,4 +164,4 @@ phpScriptObject.scriptHandler.stdin.write(data);
 ## [Thanks and Credits](./CREDITS.md)
 
 ## [License](./LICENSE.md)
-MIT © 2016 - 2017 Dimitar D. Mitov  
+MIT © 2016 - 2018 Dimitar D. Mitov  

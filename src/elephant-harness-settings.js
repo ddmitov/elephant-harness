@@ -3,7 +3,7 @@
 // elephant-harness
 // Node.js - Electron - NW.js controller for PHP scripts
 // elephant-harness is licensed under the terms of the MIT license.
-// Copyright (c) 2016 - 2017 Dimitar D. Mitov
+// Copyright (c) 2016 - 2018 Dimitar D. Mitov
 
 // THE SOFTWARE IS PROVIDED "AS IS",
 // WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
@@ -15,10 +15,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 // THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const filesystemObject = require('fs');
+const FILESYSTEM_OBJECT = require('fs');
 
 module.exports.checkSettings = function(script) {
-  var scriptSettingsOk = true;
+  let scriptSettingsOk = true;
 
   // Interpreter is mandatory script object property.
   if (script.interpreter === undefined) {
@@ -48,9 +48,7 @@ module.exports.checkSettings = function(script) {
   if (script.requestMethod !== undefined &&
       script.inputData === undefined &&
       script.inputDataHarvester === undefined) {
-    console.log('elephant-harness: Request method is ' +
-                script.requestMethod + ', ' +
-                'but input data can not be accessed.');
+    console.log('elephant-harness: Input data is not available.');
     scriptSettingsOk = false;
   }
 
@@ -58,8 +56,7 @@ module.exports.checkSettings = function(script) {
   if ((script.inputData !== undefined ||
       script.inputDataHarvester !== undefined) &&
       script.requestMethod === undefined) {
-    console.log('elephant-harness: ' +
-                'Input data is available, but request method is not set.');
+    console.log('elephant-harness: Request method is not set.');
     scriptSettingsOk = false;
   }
 
@@ -68,12 +65,12 @@ module.exports.checkSettings = function(script) {
 
 function checkScriptExistence(scriptFullPath) {
   // This function returns only after file existence check is complete.
-  var scriptExists = true;
+  let scriptExists = true;
 
   try {
-    filesystemObject.accessSync(scriptFullPath);
+    FILESYSTEM_OBJECT.accessSync(scriptFullPath);
   } catch (exception) {
-    console.log('elephant-harness: ' + scriptFullPath + 'is not found.');
+    console.log(`elephant-harness: ${scriptFullPath} is not found.`);
     scriptExists = false;
   }
 

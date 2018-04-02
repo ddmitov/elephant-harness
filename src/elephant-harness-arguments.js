@@ -3,7 +3,7 @@
 // elephant-harness
 // Node.js - Electron - NW.js controller for PHP scripts
 // elephant-harness is licensed under the terms of the MIT license.
-// Copyright (c) 2016 - 2017 Dimitar D. Mitov
+// Copyright (c) 2016 - 2018 Dimitar D. Mitov
 
 // THE SOFTWARE IS PROVIDED "AS IS",
 // WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
@@ -16,7 +16,7 @@
 // THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 module.exports.setArguments = function(script) {
-  var interpreterArguments;
+  let interpreterArguments;
 
   // Interpreter arguments, if any, go before the script full path:
   if (script.interpreterSwitches !== undefined &&
