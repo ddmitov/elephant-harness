@@ -1,5 +1,3 @@
-'use strict';
-
 const ELEPHANT_HARNESS = require('elephant-harness');
 
 let phpScriptObject = {};

@@ -1,6 +1,6 @@
 'use strict';
 
-// elephant-harness test
+// elephant-harness npm test
 
 // Load the elephant-harness package:
 const ELEPHANT_HARNESS = require('../src/elephant-harness.js');
@@ -47,7 +47,7 @@ phpTestScript.errorFunction = function(error) {
 };
 
 phpTestScript.exitFunction = function(exitCode) {
-  console.log(`elephant-harness test script exited with exit code ${exitCode}`);
+  console.log(`elephant-harness test script exit code is ${exitCode}`);
 };
 
 // Start the PHP test script:
