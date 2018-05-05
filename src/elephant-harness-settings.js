@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // elephant-harness
 // Node.js - Electron - NW.js controller for PHP scripts
@@ -15,64 +15,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 // THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const FILESYSTEM_OBJECT = require('fs');
+const filesystemObject = require("fs");
+
+// This function returns only after script existence check is complete.
+function checkScriptExistence(scriptFullPath) {
+  try {
+    filesystemObject.accessSync(scriptFullPath);
+    return true;
+  } catch (exception) {
+    // console.log(`elephant-harness: ${scriptFullPath} is not found.`);
+    return false;
+  }
+}
 
 module.exports.checkSettings = function(script) {
-  let scriptSettingsOk = true;
+  let scriptSettingsOk = false;
 
-  // Interpreter is mandatory script object property.
-  if (script.interpreter === undefined) {
-    console.log('elephant-harness: PHP interpreter is not supplied.');
-    scriptSettingsOk = false;
+  // Check mandatory settings and script full path:
+  if (script.interpreter &&
+      script.scriptFullPath &&
+      checkScriptExistence(script.scriptFullPath) === true &&
+      typeof script.stdoutFunction === "function") {
+    scriptSettingsOk = true;
   }
 
-  // Script full path is mandatory script object property.
-  if (script.scriptFullPath === undefined) {
-    console.log('elephant-harness: Script full path is not supplied.');
-    scriptSettingsOk = false;
-  }
-
-  // Script STDOUT handling function is mandatory script object property.
-  if (typeof script.stdoutFunction !== 'function') {
-    console.log('elephant-harness: STDOUT handling function is not defined.');
-    scriptSettingsOk = false;
-  }
-
-  // Start script existence check:
-  if (script.scriptFullPath !== undefined &&
-      checkScriptExistence(script.scriptFullPath) === false) {
-    scriptSettingsOk = false;
-  }
-
-  // If requestMethod is set, inputData or inputDataHarvester must also be set:
-  if (script.requestMethod !== undefined &&
-      script.inputData === undefined &&
-      script.inputDataHarvester === undefined) {
-    console.log('elephant-harness: Input data is not available.');
-    scriptSettingsOk = false;
-  }
-
-  // If inputData or inputDataHarvester is set, requestMethod must also be set:
-  if ((script.inputData !== undefined ||
-      script.inputDataHarvester !== undefined) &&
-      script.requestMethod === undefined) {
-    console.log('elephant-harness: Request method is not set.');
-    scriptSettingsOk = false;
+  // If requestMethod is set, inputData must also be set and vice versa:
+  if ((script.requestMethod && !script.inputData) ||
+      (script.inputData && !script.requestMethod)) {
+    return false;
   }
 
   return scriptSettingsOk;
 };
-
-function checkScriptExistence(scriptFullPath) {
-  // This function returns only after file existence check is complete.
-  let scriptExists = true;
-
-  try {
-    FILESYSTEM_OBJECT.accessSync(scriptFullPath);
-  } catch (exception) {
-    console.log(`elephant-harness: ${scriptFullPath} is not found.`);
-    scriptExists = false;
-  }
-
-  return scriptExists;
-}

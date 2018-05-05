@@ -2,11 +2,11 @@ elephant-harness
 --------------------------------------------------------------------------------
 
 [![GitHub Version](https://img.shields.io/github/release/ddmitov/elephant-harness.svg)](https://github.com/ddmitov/elephant-harness/releases)
-[![GitHub License](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE.md)
-[![NPM Version](https://img.shields.io/npm/v/elephant-harness.svg)](https://www.npmjs.com/package/elephant-harness)  
+[![NPM Version](https://img.shields.io/npm/v/elephant-harness.svg)](https://www.npmjs.com/package/elephant-harness)
+[![GitHub License](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE.md)  
 [![Travis CI Build Status](https://travis-ci.org/ddmitov/elephant-harness.svg?branch=master)](https://travis-ci.org/ddmitov/elephant-harness)
-[![bitHound Overall Score](https://www.bithound.io/github/ddmitov/elephant-harness/badges/score.svg)](https://www.bithound.io/github/ddmitov/elephant-harness)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/11338/badge.svg)](https://scan.coverity.com/projects/ddmitov-elephant-harness)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/74d599477f164e13af8e3a03de20a1bf)](https://www.codacy.com/app/ddmitov/elephant-harness?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ddmitov/elephant-harness&amp;utm_campaign=Badge_Grade)
 [![Snyk Status](https://snyk.io/test/github/ddmitov/elephant-harness/badge.svg)](https://snyk.io/test/github/ddmitov/elephant-harness)  
 
 [Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) package for asynchronous handling of [PHP](http://php.net/) scripts
@@ -15,17 +15,17 @@ elephant-harness
 ``npm install elephant-harness``  
 
 ```javascript
-const ELEPHANT_HARNESS = require('elephant-harness');
+const elephantHarness = require("elephant-harness");
 
 let phpScriptObject = {};
-phpScriptObject.interpreter = 'php';
-phpScriptObject.scriptFullPath = '/test/test.php';
+phpScriptObject.interpreter = "php";
+phpScriptObject.scriptFullPath = "/test/test.php";
 
 phpScriptObject.stdoutFunction = function(stdout) {
   console.log(stdout);
 };
 
-ELEPHANT_HARNESS.startScript(phpScriptObject);
+elephantHarness.startScript(phpScriptObject);
 ```
 
 ## Core Dependencies
@@ -45,29 +45,29 @@ elephant-harness npm package test will fail if no ``php`` binary is available on
 ## API
 
 ```javascript
-const ELEPHANT_HARNESS = require('elephant-harness');
+const elephantHarness = require("elephant-harness");
 
 let phpScriptObject = {};
 
  // mandatory object property
-phpScriptObject.interpreter = 'php-cgi';
+phpScriptObject.interpreter = "php-cgi";
 
  // mandatory object property
-phpScriptObject.scriptFullPath = '/test/test.php';
+phpScriptObject.scriptFullPath = "/test/test.php";
 
 // mandatory object property:
 phpScriptObject.stdoutFunction = function(stdout) {
-  document.getElementById('DOM-element-id').innerHTML = stdout;
+  document.getElementById("DOM-element-id").innerHTML = stdout;
 };
 
 phpScriptObject.stderrFunction = function(stderr) {
-  console.log('PHP script STDERR:\n');
+  console.log("PHP script STDERR:\n");
   console.log(stderr);
 };
 
 phpScriptObject.errorFunction = function(error) {
-  if (error && error.code === 'ENOENT') {
-    console.log('PHP interpreter was not found.');
+  if (error && error.code === "ENOENT") {
+    console.log("PHP interpreter was not found.");
   }
 };
 
@@ -77,17 +77,17 @@ phpScriptObject.exitFunction = function(exitCode) {
 
 // interpreter switches must be an array:
 let interpreterSwitches = [];
-interpreterSwitches.push('-q');
+interpreterSwitches.push("-q");
 phpScriptObject.interpreterSwitches = interpreterSwitches;
 
-phpScriptObject.requestMethod = 'POST';
+phpScriptObject.requestMethod = "POST";
 
-phpScriptObject.inputDataHarvester = function() {
-  let data = document.getElementById('input-box-id').value;
+phpScriptObject.inputData = function() {
+  let data = document.getElementById("input-box-id").value;
   return data;
 }
 
-ELEPHANT_HARNESS.startScript(phpScriptObject);
+elephantHarness.startScript(phpScriptObject);
 ```
 
 * **phpInterpreter:**  
@@ -127,15 +127,13 @@ ELEPHANT_HARNESS.startScript(phpScriptObject);
 
 * **inputData:**  
   This object property requires ``requestMethod`` to be set.  
-
-* **inputDataHarvester:**  
-  This is a function that can harvest input data from an HTML form or any other data source and supply it as its return value. If ``inputData`` is defined, ``inputDataHarvester`` will not be used, but if ``inputData`` is not defined and ``inputDataHarvester`` is available, it will be used as an input data source.  
+  ``inputData`` can be either a variable or a function harvesting data from HTML forms or other data sources and supplying it as a return value.  
 
   Single input box simple example with no dependencies:  
 
   ```javascript
-  phpScriptObject.inputDataHarvester = function() {
-    let data = document.getElementById('input-box-id').value;
+  phpScriptObject.inputData = function() {
+    let data = document.getElementById("input-box-id").value;
     return data;
   }
   ```
@@ -143,8 +141,8 @@ ELEPHANT_HARNESS.startScript(phpScriptObject);
   Whole form simple example based on [jQuery](https://jquery.com/):  
 
   ```javascript
-  phpScriptObject.inputDataHarvester = function() {
-    let formData = $('#form-id').serialize();
+  phpScriptObject.inputData = function() {
+    let formData = $("#form-id").serialize();
     return formData;
   }
   ```
@@ -153,7 +151,7 @@ ELEPHANT_HARNESS.startScript(phpScriptObject);
 elephant-harness can also start and communicate with interactive scripts having their own event loops and capable of repeatedly receiving STDIN input. Use the following code to send data to an interactive script waiting for input on STDIN:
 
 ```javascript
-let data = document.getElementById('interactive-script-input').value;
+let data = document.getElementById("interactive-script-input").value;
 phpScriptObject.scriptHandler.stdin.write(data);
 ```
 

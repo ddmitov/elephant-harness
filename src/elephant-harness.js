@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // elephant-harness
 // Node.js - Electron - NW.js controller for PHP scripts
@@ -15,66 +15,56 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 // THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const PHP_PROCESS = require('child_process').spawn;
+const phpProcess = require("child_process").spawn;
 
-const ALL_ARGUMENTS = require('./elephant-harness-arguments.js');
-const SCRIPT_ENVIRONMENT = require('./elephant-harness-environment.js');
-const SCRIPT_SETTINGS = require('./elephant-harness-settings.js');
+const allArguments = require("./elephant-harness-arguments.js");
+const scriptEnvironment = require("./elephant-harness-environment.js");
+const scriptSettings = require("./elephant-harness-settings.js");
 
 module.exports.startScript = function(script) {
   // Check script settings:
-  if (SCRIPT_SETTINGS.checkSettings(script) === false) {
+  if (scriptSettings.checkSettings(script) === false) {
+    // console.log("elephant-harness: Incomplete settings or wrong file path!");
     return;
   }
 
-  // If inputData is not defined and inputDataHarvester function is available,
-  // it is used as an alternative input data source:
-  if (script.inputData === undefined &&
-      typeof script.inputDataHarvester === 'function') {
-    script.inputData = script.inputDataHarvester();
-  }
-
   // Set script environment:
-  var environment = SCRIPT_ENVIRONMENT.setEnvironment(script);
+  let environment = scriptEnvironment.setEnvironment(script);
 
   // Set all interpreter arguments:
-  var interpreterArguments = ALL_ARGUMENTS.setArguments(script);
+  let interpreterArguments = allArguments.setArguments(script);
 
   // Run the supplied script:
   script.scriptHandler =
-    PHP_PROCESS(script.interpreter, interpreterArguments, {env: environment});
+    phpProcess(script.interpreter, interpreterArguments, {env: environment});
 
   // Send POST data to the script:
-  if (script.requestMethod === 'POST') {
+  if (script.requestMethod === "POST") {
     script.scriptHandler.stdin.write(`${script.inputData}\n`);
   }
 
   // Handle script errors:
-  script.scriptHandler.on('error', function(error) {
-    if (typeof script.errorFunction === 'function') {
+  script.scriptHandler.on("error", function(error) {
+    if (typeof script.errorFunction === "function") {
       script.errorFunction(error);
-    } else {
-      console.log(`elephant-harness error stack: ${error.stack}`);
-      console.log(`elephant-harness error code: ${error.code}`);
-      console.log(`elephant-harness received signal: ${error.signal}`);
     }
   });
 
   // Handle STDOUT:
-  script.scriptHandler.stdout.on('data', function(data) {
-    script.stdoutFunction(data.toString('utf8'));
+  script.scriptHandler.stdout.on("data", function(data) {
+    script.stdoutFunction(data.toString("utf8"));
   });
 
   // Handle STDERR:
-  script.scriptHandler.stderr.on('data', function(data) {
-    if (typeof script.stderrFunction === 'function') {
-      script.stderrFunction(data.toString('utf8'));
+  script.scriptHandler.stderr.on("data", function(data) {
+    if (typeof script.stderrFunction === "function") {
+      script.stderrFunction(data.toString("utf8"));
     }
   });
 
   // Handle script exit:
-  script.scriptHandler.on('exit', function(exitCode) {
-    if (typeof script.exitFunction === 'function') {
+  script.scriptHandler.on("exit", function(exitCode) {
+    if (typeof script.exitFunction === "function") {
       script.exitFunction(exitCode);
     }
   });

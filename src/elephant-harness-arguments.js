@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // elephant-harness
 // Node.js - Electron - NW.js controller for PHP scripts
@@ -19,7 +19,7 @@ module.exports.setArguments = function(script) {
   let interpreterArguments;
 
   // Interpreter arguments, if any, go before the script full path:
-  if (script.interpreterSwitches !== undefined &&
+  if (script.interpreterSwitches &&
       Array.isArray(script.interpreterSwitches)) {
     interpreterArguments = script.interpreterSwitches;
   } else {
