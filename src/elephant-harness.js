@@ -17,55 +17,76 @@
 
 const phpProcess = require("child_process").spawn;
 
-const allArguments = require("./elephant-harness-arguments.js");
-const scriptEnvironment = require("./elephant-harness-environment.js");
-const scriptSettings = require("./elephant-harness-settings.js");
+const commandLine = require("./elephant-harness-command-line.js");
+const options = require("./elephant-harness-options.js");
 
-module.exports.startScript = function(script) {
-  // Check script settings:
-  if (scriptSettings.checkSettings(script) === false) {
-    // console.log("elephant-harness: Incomplete settings or wrong file path!");
-    return;
+// Check mandatory script settings - 'scripr' and 'stdoutFunction':
+function checkSettings (settings) {
+  if (!settings.script) {
+    throw Error("elephant-harness: No 'script' is defined!");
   }
+}
 
-  // Set script environment:
-  let environment = scriptEnvironment.setEnvironment(script);
-
-  // Set all interpreter arguments:
-  let interpreterArguments = allArguments.setArguments(script);
-
-  // Run the supplied script:
-  script.scriptHandler =
-    phpProcess(script.interpreter, interpreterArguments, {env: environment});
-
-  // Send POST data to the script:
-  if (script.requestMethod === "POST") {
-    script.scriptHandler.stdin.write(`${script.inputData}\n`);
+// Write data on script STDIN:
+// If any data is available when the script is started and
+// 'GET' request method is not set,
+// data is written on script STDIN.
+function stdinWrite (settings) {
+  if (settings.inputData && settings.requestMethod !== "GET") {
+    settings.scriptHandler.stdin.write(`${settings.inputData}\n`);
   }
+}
+
+// Handle script STDOUT and STDERR:
+// If 'options.stdio = "ignore"' is set,
+// there are no script STDOUT or STDERR.
+function handleStdoutStderr(settings) {
+  if (settings.options.stdio !== "ignore") {
+    settings.scriptHandler.stdout.on("data", function (stdout) {
+      if (typeof settings.stdoutFunction === "function") {
+        settings.stdoutFunction(stdout.toString("utf8"));
+      }
+    });
+
+    if (typeof settings.stderrFunction === "function") {
+      settings.scriptHandler.stderr.on("data", function (stderr) {
+        settings.stderrFunction(stderr.toString("utf8"));
+      });
+    }
+  }
+}
+
+// Start PHP script - the main function of 'elephant-harness':
+// All PHP scripts are executed asynchronously.
+module.exports.startScript = function (settings) {
+  // Check mandatory script settings:
+  checkSettings(settings);
+
+  // Run script:
+  // If no interpreter is set,
+  // 'php' interpreter on PATH is used.
+  settings.scriptHandler =
+    phpProcess((settings.interpreter || "php"),
+                commandLine.setArguments(settings),
+                options.setOptions(settings));
+
+  // Write data on script STDIN, if any:
+  stdinWrite(settings);
+
+  // Handle script STDOUT and STDERR:
+  handleStdoutStderr(settings);
 
   // Handle script errors:
-  script.scriptHandler.on("error", function(error) {
-    if (typeof script.errorFunction === "function") {
-      script.errorFunction(error);
-    }
-  });
-
-  // Handle STDOUT:
-  script.scriptHandler.stdout.on("data", function(data) {
-    script.stdoutFunction(data.toString("utf8"));
-  });
-
-  // Handle STDERR:
-  script.scriptHandler.stderr.on("data", function(data) {
-    if (typeof script.stderrFunction === "function") {
-      script.stderrFunction(data.toString("utf8"));
-    }
-  });
+  if (typeof settings.errorFunction === "function") {
+    settings.scriptHandler.on("error", function (error) {
+      settings.errorFunction(error);
+    });
+  }
 
   // Handle script exit:
-  script.scriptHandler.on("exit", function(exitCode) {
-    if (typeof script.exitFunction === "function") {
-      script.exitFunction(exitCode);
+  settings.scriptHandler.on("exit", function (exitCode) {
+    if (typeof settings.exitFunction === "function") {
+      settings.exitFunction(exitCode);
     }
   });
 };

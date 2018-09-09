@@ -1,6 +1,6 @@
 {
   "name": "elephant-harness",
-  "version": "0.8.6",
+  "version": "1.0.0",
   "description": "Node.js - Electron - NW.js controller for PHP scripts",
   "main": "src/elephant-harness.js",
   "directories": {
@@ -25,6 +25,5 @@
   "bugs": {
     "url": "https://github.com/ddmitov/elephant-harness/issues"
   },
-  "homepage": "https://github.com/ddmitov/elephant-harness#readme",
-  "tonicExampleFilename": "tonic/example.js"
+  "homepage": "https://github.com/ddmitov/elephant-harness#readme"
 }

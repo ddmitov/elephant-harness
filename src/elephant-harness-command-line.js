@@ -15,21 +15,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 // THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-module.exports.setEnvironment = function(script) {
-  // Script environment inherits Node environment:
-  let scriptEnvironment = process.env;
+// Set all interpreter arguments:
+// interpreter switches, script and script arguments:
+module.exports.setArguments = function (settings) {
+  let interpreterArguments = [];
 
-  // Handle GET requests:
-  if (script.requestMethod === "GET") {
-    scriptEnvironment.REQUEST_METHOD = "GET";
-    scriptEnvironment.QUERY_STRING = script.inputData;
+  // Interpreter switches, if any, go before the script:
+  if (Array.isArray(settings.interpreterSwitches)) {
+    interpreterArguments = settings.interpreterSwitches;
   }
 
-  // Handle POST requests:
-  if (script.requestMethod === "POST") {
-    scriptEnvironment.REQUEST_METHOD = "POST";
-    scriptEnvironment.CONTENT_LENGTH = script.inputData.length;
+  // The full path of the script is the minimal interpreter argument:
+  interpreterArguments.push(settings.script);
+
+  // Script arguments, if any, go after the script full path:
+  if (Array.isArray(settings.scriptArguments)) {
+    Array.prototype.push.apply(interpreterArguments, settings.scriptArguments);
   }
 
-  return scriptEnvironment;
+  return interpreterArguments;
 };

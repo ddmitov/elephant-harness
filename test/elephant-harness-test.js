@@ -2,6 +2,19 @@
 
 // elephant-harness npm test
 
+// elephant-harness is licensed under the terms of the MIT license.
+// Copyright (c) 2016 - 2018 Dimitar D. Mitov
+
+// THE SOFTWARE IS PROVIDED "AS IS",
+// WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY,
+// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
+// THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 // Load the elephant-harness package:
 const elephantHarness = require("../src/elephant-harness.js");
 
@@ -16,16 +29,13 @@ if (platform !== "win32") {
   path = require("path").win32;
 }
 
-// Compose the full path of the Perl test script:
+// Compose the full path of the PHP test script:
 let phpTestScriptFullPath = path.join(__dirname, "elephant-harness-test.php");
 
-// Initialize the PHP test script object:
+// PHP test script settings:
 let phpTestScript = {};
 phpTestScript.interpreter = "php";
-phpTestScript.scriptFullPath = phpTestScriptFullPath;
-
-// phpTestScript.requestMethod = "GET";
-// phpTestScript.inputData = "test";
+phpTestScript.script = phpTestScriptFullPath;
 
 // The following interpreter switches are added only for testing purposes:
 // -e  Generate extended information for debugger/profiler
@@ -36,18 +46,10 @@ interpreterSwitches.push("-H");
 phpTestScript.interpreterSwitches = interpreterSwitches;
 
 phpTestScript.stdoutFunction = function(stdout) {
-  console.log(`elephant-harness STDOUT test: ${stdout}`);
-};
-
-phpTestScript.stderrFunction = function(stderr) {
-  console.log(`elephant-harness STDERR test: ${stderr}`);
+  console.log(stdout);
 };
 
 phpTestScript.errorFunction = function(error) {
-  // console.log(`elephant-harness error stack: ${error.stack}`);
-  // console.log(`elephant-harness error code: ${error.code}`);
-  // console.log(`elephant-harness received signal: ${error.signal}`);
-
   if (error && error.code === "ENOENT") {
     console.log("PHP interpreter was not found.");
   }
@@ -55,6 +57,7 @@ phpTestScript.errorFunction = function(error) {
 
 phpTestScript.exitFunction = function(exitCode) {
   console.log(`elephant-harness test script exit code is ${exitCode}`);
+  console.log(" ");
 };
 
 // Start the PHP test script:
