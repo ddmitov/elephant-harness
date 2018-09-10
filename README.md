@@ -114,6 +114,9 @@ All settings of a PHP script executed by elephant-harness are stored in a JavaSc
   phpTest.interpreterSwitches.push("-q");
   ```
 
+  The ``php-cgi`` binary should be used with the ``-q`` switch in Electron and NW.js  
+  to enable quiet mode and suppress unnecessary HTTP header output.  
+
 * **scriptArguments**  
   ``Array`` for PHP script arguments  
 
