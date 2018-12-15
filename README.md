@@ -222,8 +222,6 @@ let data = document.getElementById("interactive-script-input").value;
 phpTest.scriptHandler.stdin.write(data);
 ```
 
-elephant-harness demo packages for [Electron](https://www.npmjs.com/package/elephant-harness-demo-electron) and [NW.js](https://www.npmjs.com/package/elephant-harness-demo-nwjs) include a PHP script that can be constantly fed with data from an HTML interface. PHP with the ``AnyEvent`` CPAN module has to be available on PATH.  
-
 ## [Electron Demo](https://www.npmjs.com/package/elephant-harness-demo-electron)
 
 ## [NW.js Demo](https://www.npmjs.com/package/elephant-harness-demo-nwjs)
