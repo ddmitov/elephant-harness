@@ -14,7 +14,7 @@ sudo: required
 dist: wheezy
 
 install:
-  - sudo apt-get -y install php5-cli
+  - sudo apt-get -y install php
   - npm install
 
 script:
