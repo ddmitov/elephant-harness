@@ -1,5 +1,5 @@
-elephant-harness
---------------------------------------------------------------------------------
+# elephant-harness
+
 [![Travis CI Build Status](https://travis-ci.org/ddmitov/elephant-harness.svg?branch=master)](https://travis-ci.org/ddmitov/elephant-harness)
 [![Inline docs](http://inch-ci.org/github/ddmitov/elephant-harness.svg?branch=master)](http://inch-ci.org/github/ddmitov/elephant-harness)  
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/11338/badge.svg)](https://scan.coverity.com/projects/ddmitov-elephant-harness)
@@ -10,6 +10,7 @@ elephant-harness
 [Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) package for asynchronous handling of [PHP](http://php.net/) scripts
 
 ## Quick Start
+
 ``npm install elephant-harness``  
 
 ```javascript
@@ -26,9 +27,11 @@ elephantHarness.startScript(phpTest);
 ```
 
 ## Core Dependency
+
 ``child_process``
 
 ## External Dependency
+
 The only external dependency of elephant-harness is a PHP interpreter on PATH or  
 a PHP interpreter identified by its full pathname.  
 
@@ -39,6 +42,7 @@ elephant-harness npm package test will fail if no ``php`` binary is available on
 ``php-cgi`` binary should be used in [Electron](http://electron.atom.io/) and [NW.js](http://nwjs.io/) applications.
 
 ## API
+
 All settings of a PHP script executed by elephant-harness are stored in a JavaScript object with an arbitrary name and the following object properties:  
 
 * **script**  
@@ -176,12 +180,14 @@ All settings of a PHP script executed by elephant-harness are stored in a JavaSc
 
 * **requestMethod**  
   ``String`` holding either ``GET`` or ``POST`` as a value.  
-  ``requestMethod`` has to be set for PHP scripts reading input data in CGI mode.  
+  ``requestMethod`` has to be set for PHP scripts reading input data in CGI mode.
 
   ```javascript
   phpTest.requestMethod = "GET";
   ```
-  or  
+
+  or
+
   ```javascript
   phpTest.requestMethod = "POST";
   ```
@@ -208,6 +214,7 @@ All settings of a PHP script executed by elephant-harness are stored in a JavaSc
   ```
 
 ## Interactive Scripts
+
 elephant-harness can also start and communicate with interactive scripts having their own event loops and capable of repeatedly receiving STDIN input. Use the following code to send data to an interactive script waiting for input on STDIN:
 
 ```javascript
@@ -224,5 +231,6 @@ elephant-harness demo packages for [Electron](https://www.npmjs.com/package/elep
 ## [Credits](./CREDITS.md)
 
 ## [License](./LICENSE.md)
+
 MIT 2016 - 2018  
 Dimitar D. Mitov  
