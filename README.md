@@ -1,9 +1,8 @@
 # elephant-harness
 
 [![Travis CI Build Status](https://travis-ci.org/ddmitov/elephant-harness.svg?branch=master)](https://travis-ci.org/ddmitov/elephant-harness)
-[![Inline docs](http://inch-ci.org/github/ddmitov/elephant-harness.svg?branch=master)](http://inch-ci.org/github/ddmitov/elephant-harness)  
+[![Inline docs](http://inch-ci.org/github/ddmitov/elephant-harness.svg?branch=master)](http://inch-ci.org/github/ddmitov/elephant-harness)
 [![Snyk Status](https://snyk.io/test/github/ddmitov/elephant-harness/badge.svg)](https://snyk.io/test/github/ddmitov/elephant-harness)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/74d599477f164e13af8e3a03de20a1bf)](https://www.codacy.com/app/ddmitov/elephant-harness?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ddmitov/elephant-harness&amp;utm_campaign=Badge_Grade)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f728110055011b195a4d/maintainability)](https://codeclimate.com/github/ddmitov/elephant-harness/maintainability)
 
 [Node.js](http://nodejs.org/) - [Electron](http://electron.atom.io/) - [NW.js](http://nwjs.io/) package for asynchronous handling of [PHP](http://php.net/) scripts
