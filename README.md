@@ -1,7 +1,6 @@
 # elephant-harness
 
 [![Travis CI Build Status](https://travis-ci.org/ddmitov/elephant-harness.svg?branch=master)](https://travis-ci.org/ddmitov/elephant-harness)
-[![Inline docs](http://inch-ci.org/github/ddmitov/elephant-harness.svg?branch=master)](http://inch-ci.org/github/ddmitov/elephant-harness)
 [![Snyk Status](https://snyk.io/test/github/ddmitov/elephant-harness/badge.svg)](https://snyk.io/test/github/ddmitov/elephant-harness)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f728110055011b195a4d/maintainability)](https://codeclimate.com/github/ddmitov/elephant-harness/maintainability)
 
